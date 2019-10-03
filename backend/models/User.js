@@ -5,21 +5,56 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
+      required: true,
+    },
+
+    name: {
+      type: String,
       required: true
     },
 
-    instrument: {
+    lastName: {
       type: String,
-      enum: ['Guitarra', 'Canto', 'Bajo', 'Piano', 'Violín', 'Batería', 'Acordeon', 'Saxofón']
+      required: true
     },
 
-    image: String
+    email: {
+      type: String,
+      required: true,
+    },
+
+    instruments: [{type: Schema.Types.ObjectId, ref: 'Instrument'}],
+
+    genres: [{type: Schema.Types.ObjectId, ref: 'Genre'}],
+
+    influence: [String],
+
+    musicReading: Boolean,
+
+    location: String,
+
+    photo: String,
+
+    friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
+
+    biography: [String],
+
+    files: [{type: Schema.Types.ObjectId, ref: 'File'}]
   },
   {
     timestamps: true,
-    versionKey: false
+    versionKey: false,
+    collation: {locale: 'en', strength: 1},
   }
 );
+
+userSchema.index({
+  username: 1,
+  email: 1,
+}, {
+  unique: true,
+  collation: {locale: 'en', strength: 1}
+});
 
 userSchema.plugin(PLM, {usernameField: 'username'});
 
