@@ -1,19 +1,22 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Profile from './components/Profile';
-import Home from './components/Home';
-import NotFound from './components/404/NotFound.js';
+import {BrowserRouter, Switch} from 'react-router-dom';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Profile from './pages/Profile';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound.js';
+import DefaultLayout from "./components/DefaultLayout";
+import Dashboard from "./pages/Dashboard";
 
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/signup" component={Signup} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/profile" component={Profile} />
-      <Route component={NotFound} />
+      <DefaultLayout exact path="/" component={Home} />
+      <DefaultLayout exact path="/signup" component={Signup} />
+      <DefaultLayout exact path="/login" component={Login} />
+      <DefaultLayout exact path="/profile" component={Profile} />
+      <DefaultLayout exact path="/dashboard" component={Dashboard} />
+      <DefaultLayout component={NotFound} />
     </Switch>
   </BrowserRouter>
 );

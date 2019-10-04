@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {MyContext} from '../context';
 import {Button, Card} from 'antd';
+import MY_SERVICE from '../services/index';
 
 export default class Profile extends Component {
   state = {
@@ -8,13 +8,14 @@ export default class Profile extends Component {
   };
 
   componentDidUpdate() {
-    if (!this.context.state.loggedUser) {
+    if (!MY_SERVICE.loggedUser()) {
       return this.props.history.push('/login');
     }
   }
 
   render() {
-    if (!this.context.state.loggedUser) {
+    const loggedUser = MY_SERVICE.loggedUser();
+    if (!MY_SERVICE.loggedUser()) {
       return null;
     }
     return (
@@ -36,12 +37,12 @@ export default class Profile extends Component {
           >
             Profile
           </h1>
-          <h2>Hello {this.context.state.loggedUser.username} </h2>
+          <h2>Hello {loggedUser.username} </h2>
           <p>
-            Your campus is: <b>{this.context.state.loggedUser.campus}</b>
+            Your campus is: <b>{loggedUser.campus}</b>
           </p>
           <p>
-            Your course is: <b>{this.context.state.loggedUser.course}</b>
+            Your course is: <b>{loggedUser.course}</b>
           </p>
           <Button
             onClick={this.context.logOut}
@@ -61,5 +62,3 @@ export default class Profile extends Component {
     );
   }
 }
-
-Profile.contextType = MyContext;

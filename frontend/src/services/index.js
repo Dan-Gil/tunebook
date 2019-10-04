@@ -11,14 +11,20 @@ const MY_SERVICE = {
     return await service.get('/');
   },
   signup: async user => {
-    return await SERVICE.post('/signup', user);
+    return await service.post('/signup', user);
   },
   login: async user => {
-    return await SERVICE.post('/login', user);
+    return await service.post('/login', user);
   },
   logOut: async () => {
-    return await SERVICE.get('/logout');
-  }
+    return await service.get('/logout');
+  },
+  logUser: loggedUser => {
+    window.localStorage.setItem('user', JSON.strinqify(loggedUser));
+  },
+  loggedUser: () => {
+    JSON.parse(window.localStorage.getItem('user'));
+  },
 };
 
 export default MY_SERVICE;
