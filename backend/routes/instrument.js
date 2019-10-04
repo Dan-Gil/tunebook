@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Instrument = require('../models/Instrument');
-const {getPartialSearchQuery} = require("../util");
+const {getPartialSearchQuery} = require('../util');
 
 router.get('/instrument', (req, res, next) => {
   let search = {};

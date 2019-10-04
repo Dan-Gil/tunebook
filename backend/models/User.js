@@ -27,7 +27,7 @@ const userSchema = new Schema(
 
     genres: [{type: Schema.Types.ObjectId, ref: 'Genre'}],
 
-    influence: [String],
+    influences: [String],
 
     musicReading: Boolean,
 
@@ -37,7 +37,7 @@ const userSchema = new Schema(
 
     friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
 
-    biography: [String],
+    biography: String,
 
     files: [{type: Schema.Types.ObjectId, ref: 'File'}]
   },
@@ -49,8 +49,14 @@ const userSchema = new Schema(
 );
 
 userSchema.index({
-  username: 1,
-  email: 1,
+  username: 1
+}, {
+  unique: true,
+  collation: {locale: 'en', strength: 1}
+});
+
+userSchema.index({
+  email: 1
 }, {
   unique: true,
   collation: {locale: 'en', strength: 1}

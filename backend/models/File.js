@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose');
 
-const messageSchema = new Schema(
+const fileSchema = new Schema(
   {
     name: {
       type: String,
@@ -24,4 +24,4 @@ const messageSchema = new Schema(
   }
 );
 
-module.exports = model('Message', messageSchema);
+module.exports = model('File', fileSchema);

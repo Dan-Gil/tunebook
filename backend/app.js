@@ -47,12 +47,16 @@ app.use(logger('dev'));
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
+const user = require('./routes/user');
 const instrument = require('./routes/instrument');
 const genre = require('./routes/genre');
+const file = require('./routes/file');
 app.use('/', index);
 app.use('/', auth);
+app.use('/', file);
 app.use('/', instrument);
 app.use('/', genre);
+app.use('/', user);
 
 // Uncomment this line for production
 // app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));

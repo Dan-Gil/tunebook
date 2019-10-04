@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Genre = require('../models/genre');
-const {getPartialSearchQuery} = require("../util");
+const {getPartialSearchQuery} = require('../util');
 
 router.get('/genre', (req, res, next) => {
   let search = {};
