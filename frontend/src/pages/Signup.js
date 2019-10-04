@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Card, Input, Icon, Form, Button, Select, Row, Col} from 'antd';
-import AUTH_SERVICE from '../services/auth';
+import MY_SERVICE from '../services/index';
 import {Link} from 'react-router-dom';
 export class Signup extends Component {
   state = {
@@ -16,7 +16,7 @@ export class Signup extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    AUTH_SERVICE.signup(this.state.user)
+    MY_SERVICE.signup(this.state.user)
       .then(response => {
         console.log(response.data);
         this.props.history.push('/login');

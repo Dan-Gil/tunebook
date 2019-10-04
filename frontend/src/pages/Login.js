@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {MyContext} from '../context';
 import {Card, Form, Icon, Button, Input} from 'antd';
-import AUTH_SERVICE from '../services/auth';
+import MY_SERVICE from '../services/index';
 import {Link} from 'react-router-dom';
 
 export default class Login extends Component {
@@ -18,7 +18,7 @@ export default class Login extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    AUTH_SERVICE.login(this.state.user)
+    MY_SERVICE.login(this.state.user)
       .then(response => {
         localStorage.setItem('user', JSON.stringify(response.data.user));
         this.props.history.push('/profile');
