@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Card, Input, Icon, Form, Button, Select, Row, Col} from 'antd';
+import {Card, Input, Icon, Form, Button, Row, Col} from 'antd';
 import MY_SERVICE from '../services/index';
 import {Link} from 'react-router-dom';
-export class Signup extends Component {
+
+export default class Signup extends Component {
   state = {
     user: {}
   };
@@ -36,89 +37,95 @@ export class Signup extends Component {
   };
 
   render() {
-    const {Option} = Select;
     return (
-      <div
-        style={{
-          margin: '0 auto'
-        }}
-      >
+      <div>
         <h2
           style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            padding: '2% 0'
           }}
         >
-          Signup
+          Regístrate
         </h2>
         <Row type="flex">
           <Col offset={4} span={8}>
             <Card>
               <Form onSubmit={this.onSubmit}>
-                <Form.Item label="Username">
+                <Form.Item label="Nombre">
+                  <Input
+                    type="text"
+                    onChange={this.handleInput}
+                    name="name"
+                    prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
+                    placeholder="Name"
+                  />
+                </Form.Item>
+                <Form.Item label="Apellido">
+                  <Input
+                    type="text"
+                    onChange={this.handleInput}
+                    name="lastName"
+                    prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
+                    placeholder="Apellido"
+                  />
+                </Form.Item>
+                <Form.Item label="Nombre de usuario">
                   <Input
                     type="text"
                     onChange={this.handleInput}
                     name="username"
                     prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
-                    placeholder="Username"
+                    placeholder="Nombre de usuario"
                   />
                 </Form.Item>
-                <Form.Item label="Password">
+                <Form.Item label="Correo Electrónico">
+                  <Input
+                    type="email"
+                    onChange={this.handleInput}
+                    name="email"
+                    prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}} />}
+                    placeholder="Correo Electrónico"
+                  />
+                </Form.Item>
+                <Form.Item label="Contraseña">
                   <Input
                     onChange={this.handleInput}
                     type="password"
                     name="password"
                     prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />}
-                    placeholder="Password"
+                    placeholder="Contraseña"
                   />
                 </Form.Item>
-                <Form.Item label="Select you campus">
-                  <Select onChange={this.handleSelect.bind(this, 'campus')} placeholder="Select your campus">
-                    <Option value="Amsterdam">Amsterdam</Option>
-                    <Option value="Barcelona">Barcelona</Option>
-                    <Option value="Berlin">Berlin</Option>
-                    <Option value="Madrid">Madrid</Option>
-                    <Option value="México">México</Option>
-                    <Option value="Paris">Paris</Option>
-                    <Option value="Sao Paulo">Sao Paulo</Option>
-                  </Select>
-                </Form.Item>
-                <Form.Item label="Select your course">
-                  <Select onChange={this.handleSelect.bind(this, 'course')} placeholder="Select you course">
-                    <Option value="WebDev">WebDev</Option>
-                    <Option value="UX/UI">UX/UI</Option>
-                    <Option value="Data Science">Data Science</Option>
-                  </Select>
-                </Form.Item>
+
                 <Form.Item>
-                  <Button htmlType="submit" type="primary">
-                    Sign Up
-                  </Button>
-                </Form.Item>
-                <Form.Item>
-                  <Link to="/">
-                    <Button type="primary">Go Home</Button>
-                  </Link>
+                  <Col offset={4} span={8}>
+                    <Button htmlType="submit" type="primary">
+                      Regístrate
+                    </Button>
+                  </Col>
+
+                  <Col offset={4} span={8}>
+                    <Link to="/">
+                      {' '}
+                      <Button type="primary">Home</Button>
+                    </Link>
+                  </Col>
                 </Form.Item>
               </Form>
             </Card>
           </Col>
           <Col span={8}>
             <Card
+              className="left-side"
               style={{
                 height: '100%'
               }}
-            >
-              <h2>Hello</h2>
-              <p>Profile</p>
-            </Card>
+            ></Card>
           </Col>
         </Row>
       </div>
     );
   }
 }
-
-export default Signup;

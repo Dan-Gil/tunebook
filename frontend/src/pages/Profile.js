@@ -4,10 +4,15 @@ import MY_SERVICE from '../services/index';
 
 export default class Profile extends Component {
   state = {
-    user: {}
+    user: {
+      username: '',
+      name: '',
+      lastName: '',
+      email: ''
+    }
   };
 
-  componentDidUpdate() {
+  componentDidMount() {
     if (!MY_SERVICE.loggedUser()) {
       return this.props.history.push('/login');
     }
@@ -38,12 +43,7 @@ export default class Profile extends Component {
             Profile
           </h1>
           <h2>Hello {loggedUser.username} </h2>
-          <p>
-            Your campus is: <b>{loggedUser.campus}</b>
-          </p>
-          <p>
-            Your course is: <b>{loggedUser.course}</b>
-          </p>
+
           <Button
             onClick={this.context.logOut}
             style={{

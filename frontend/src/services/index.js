@@ -20,11 +20,11 @@ const MY_SERVICE = {
     return await service.get('/logout');
   },
   logUser: loggedUser => {
-    window.localStorage.setItem('user', JSON.strinqify(loggedUser));
+    window.localStorage.setItem('user', JSON.stringify(loggedUser));
   },
   loggedUser: () => {
     JSON.parse(window.localStorage.getItem('user'));
-  },
+  }
 };
 
 export default MY_SERVICE;

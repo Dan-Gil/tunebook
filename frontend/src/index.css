@@ -1,11 +1,44 @@
 img.logo {
-  height: 50px;
+  height: 5vh;
   width: auto;
-  display: inline-block;
+
   float: left;
   margin: 7px;
 }
 
+.left-side {
+  background-color: #0f0127;
+  box-sizing: border-box;
+  background-image: url('/images/logo.png');
+  background-size: 450px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .ant-layout-header .ant-menu {
   float: right;
+}
+.ant-menu.ant-menu-dark .ant-menu-item-selected {
+  background-color: #bc0ed3;
+}
+/* .ant-menu-horizontal :hover {
+  background-color: #8700a1;
+} */
+
+.ant-btn-primary {
+  background-color: #8700a1;
+  border: none;
+}
+
+.ant-btn-primary:hover {
+  background-color: #bc0ed3;
+  border: none;
+}
+.footer-redes-icon {
+  width: 40px;
+  height: auto;
+}
+
+.anticon svg:hover {
+  color: #bc0ed3;
 }

@@ -1,11 +1,27 @@
-import React from "react";
+import React, {Component} from 'react';
+import MY_SERVICE from '../services/index';
 
-const Dashboard = () => {
-  return (
-    <div>
+export default class Dashboard extends Component {
+  state = {
+    user: {}
+  };
 
-    </div>
-  );
-};
+  componentDidMount() {
+    if (!MY_SERVICE.loggedUser()) {
+      return this.props.history.push('/login');
+    }
+  }
 
-export default Dashboard;
+  render() {
+    const loggedUser = MY_SERVICE.loggedUser();
+    if (!MY_SERVICE.loggedUser()) {
+      return null;
+    }
+    return (
+      <div>
+        <h1>Test</h1>
+        <h2>Hello {loggedUser.username} </h2>
+      </div>
+    );
+  }
+}
