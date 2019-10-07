@@ -11,8 +11,9 @@ module.exports = {
             {[key]: {$lt: endValue}}
           ]
         }, {
-          $regex: value,
+          [key]: { $regex: value }
         }
+
       ]
     }
   },

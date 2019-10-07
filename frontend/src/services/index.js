@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 let baseURL;
 process.env.NODE_ENV === 'production'
   ? (baseURL = 'here should be your production endpoint')
@@ -17,14 +18,25 @@ const MY_SERVICE = {
     return await service.post('/login', user);
   },
   logOut: async () => {
-    return await service.get('/logout');
+    window.localStorage.removeItem('user');
+    await service.get('/logout');
   },
   logUser: loggedUser => {
     window.localStorage.setItem('user', JSON.stringify(loggedUser));
   },
   loggedUser: () => {
-    JSON.parse(window.localStorage.getItem('user'));
-  }
+    return JSON.parse(window.localStorage.getItem('user'));
+  },
+  findUsersByName: async (text, skip, limit) => {
+    let url = `/user?username=${text}&name=${text}&lastName=${text}`;
+    if (skip) {
+      url += `skip=${skip}`;
+    }
+    if (limit) {
+      url += `limit=${limit}`;
+    }
+    return await service.get(url);
+  },
 };
 
 export default MY_SERVICE;

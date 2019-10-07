@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound.js';
-import DefaultLayout from "./components/DefaultLayout";
+import DefaultLayout from "./components/DefaultLayout/DefaultLayout";
 import Dashboard from "./pages/Dashboard";
 
 const Router = () => (

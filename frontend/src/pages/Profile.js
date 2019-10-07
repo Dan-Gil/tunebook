@@ -13,6 +13,8 @@ export default class Profile extends Component {
   };
 
   componentDidMount() {
+    // eslint-disable-next-line
+    const loggedIn = MY_SERVICE.loggedUser();
     if (!MY_SERVICE.loggedUser()) {
       return this.props.history.push('/login');
     }

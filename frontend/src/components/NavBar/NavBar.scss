@@ -1,0 +1,45 @@
+.nav-bar {
+  display: flex;
+
+  .left {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    img.logo {
+      height: 64px;
+      width: auto;
+    }
+  }
+
+  .mid {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    flex: 2 1 auto;
+
+    div.icons {
+      margin-left: 20px;
+      margin-right: 20px;
+
+      .ant-scroll-number.ant-badge-count {
+        height: 15px;
+        line-height: 15px;
+        font-size: 10px;
+        min-width: 15px;
+        padding: 0 0;
+      }
+    }
+
+    div.search {
+      margin-left: 20px;
+      margin-right: 20px;
+      flex: 2 1 auto;
+    }
+  }
+
+  .right {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
