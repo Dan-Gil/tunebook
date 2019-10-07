@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom';
 import {Layout, Col, Row, Icon} from 'antd';
 import {Link} from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
+import './DefaultLayout.scss';
 
 const {Header, Footer, Content} = Layout;
 

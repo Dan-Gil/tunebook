@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Button, Card} from 'antd';
+import {Avatar, Card} from 'antd';
 import MY_SERVICE from '../services/index';
+import FileForm from '../components/File/FileForm'
 
 export default class Profile extends Component {
   state = {
@@ -8,7 +9,8 @@ export default class Profile extends Component {
       username: '',
       name: '',
       lastName: '',
-      email: ''
+      email: '',
+      photo: ''
     }
   };
 
@@ -39,27 +41,26 @@ export default class Profile extends Component {
         <Card style={{width: '50vw'}}>
           <h1
             style={{
-              color: '#638165'
+              color: '#342c4f'
             }}
           >
-            Profile
+            Mi perfil
           </h1>
-          <h2>Hello {loggedUser.username} </h2>
-
-          <Button
-            onClick={this.context.logOut}
-            style={{
-              backgroundColor: '#c0e3be',
-              color: '#638165',
-              margin: '15px',
-              width: '200px',
-              border: 'none',
-              display: 'block'
-            }}
-          >
-            Log out
-          </Button>
+          <h2>Bienvenido "{loggedUser.username}" </h2>
+          <div>
+              {loggedUser.photo ? (
+                    <img  src={loggedUser.photo} alt={loggedUser.username} style={{
+            borderRadius: '50%',
+            width: "100px",
+            height: '100px'
+            }}/>
+                ) : (
+                  <Avatar size="large">{loggedUser.username.slice(0, 1).toLocaleUpperCase()}</Avatar>
+                )}
+          
+          </div>
         </Card>
+        <FileForm/>
       </div>
     );
   }

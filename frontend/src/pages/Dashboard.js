@@ -20,7 +20,7 @@ export default class Dashboard extends Component {
     return (
       <div>
         <h1>Test</h1>
-        <h2>Hello {loggedUser.username} </h2>
+        <h2>Bienvenido {loggedUser.username} </h2>
       </div>
     );
   }

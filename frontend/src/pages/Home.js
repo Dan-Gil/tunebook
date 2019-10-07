@@ -4,22 +4,39 @@ import {Button, Col, Row} from 'antd';
 
 export default function Home() {
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: 'url(/images/background.jpg)',
+        backgroundSize: 'cover',
+        height: '100vh'
+      }}
+    >
       <Row
-      // type="flex"
-      // style={{
-      //   justifyContent: 'center',
-      //   alignItems: 'center'
-      // }}
+      type="flex"
+      style={{
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
       >
         <div>
-          <Col offset={4} span={8}>
-            <Row>
+          <Col offset={4} span={16}>
+            {/* <Row> */}
               <Col span={24}>
-                <h1>Bienvenido a TuneBook</h1>
+                <h1
+                style={{
+                  color: '#fff',
+                  fontSize: '2rem'
+                }}
+
+                >Bienvenido a TuneBook</h1>
               </Col>
               <Col span={24}>
-                <h3>Comenzemos! </h3>
+                <h3
+                   style={{
+                  color: '#fff',
+                  fontSize: '1.5rem'
+                  }}
+                  >Comenzemos! </h3>
               </Col>
               <Col span={24}>
                 <div>
@@ -35,11 +52,10 @@ export default function Home() {
                   </Link>
                 </div>
               </Col>
-            </Row>
+            {/* </Row> */}
           </Col>{' '}
         </div>
-
-        <Col span={8}>
+        {/* <Col span={8}>
           {/* <Row
               type="flex"
               style={{
@@ -47,7 +63,7 @@ export default function Home() {
                 alignItems: 'center'
               }}
             > */}
-          <Col span={24}>
+        {/* <Col span={24}>
             <img
               src="https://ak5.picdn.net/shutterstock/videos/1739485/thumb/1.jpg"
               alt="algo"
@@ -62,8 +78,8 @@ export default function Home() {
               animi ad quod assumenda beatae corporis placeat explicabo modi earum, magnam tempora libero alias
               adipisci! Quaerat, blanditiis?
             </p>
-          </Col>
-        </Col>
+          </Col> */}{' '}
+        {/* </Col> */}
       </Row>
     </div>
   );

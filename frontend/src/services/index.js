@@ -21,6 +21,10 @@ const MY_SERVICE = {
     window.localStorage.removeItem('user');
     await service.get('/logout');
   },
+
+  edit: async updateUser => {
+    return await service.put('/edit', updateUser);
+  },
   logUser: loggedUser => {
     window.localStorage.setItem('user', JSON.stringify(loggedUser));
   },
@@ -36,7 +40,7 @@ const MY_SERVICE = {
       url += `limit=${limit}`;
     }
     return await service.get(url);
-  },
+  }
 };
 
 export default MY_SERVICE;

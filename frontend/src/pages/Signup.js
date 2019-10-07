@@ -27,15 +27,6 @@ export default class Signup extends Component {
       });
   };
 
-  handleSelect = (name, value) => {
-    this.setState({
-      user: {
-        ...this.state.user,
-        [name]: value
-      }
-    });
-  };
-
   render() {
     return (
       <div>
@@ -98,7 +89,15 @@ export default class Signup extends Component {
                     placeholder="Contraseña"
                   />
                 </Form.Item>
-
+                <Form.Item label="Foto de Perfil">
+                  <Input
+                    type="text"
+                    onChange={this.handleInput}
+                    name="photo"
+                    prefix={<Icon type="picture" style={{color: 'rgba(0,0,0,.25)'}} />}
+                    placeholder="Imagen Url"
+                  />
+                </Form.Item>
                 <Form.Item>
                   <Col offset={4} span={8}>
                     <Button htmlType="submit" type="primary">

@@ -5,8 +5,9 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound.js';
-import DefaultLayout from "./components/DefaultLayout/DefaultLayout";
-import Dashboard from "./pages/Dashboard";
+import DefaultLayout from './components/DefaultLayout/DefaultLayout';
+import Dashboard from './pages/Dashboard';
+import EditUser from './pages/EditUser';
 
 const Router = () => (
   <BrowserRouter>
@@ -16,6 +17,7 @@ const Router = () => (
       <DefaultLayout exact path="/login" component={Login} />
       <DefaultLayout exact path="/profile" component={Profile} />
       <DefaultLayout exact path="/dashboard" component={Dashboard} />
+      <DefaultLayout exact path="/user/edit/:id" component={EditUser} />
       <DefaultLayout component={NotFound} />
     </Switch>
   </BrowserRouter>

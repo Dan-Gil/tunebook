@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Avatar, Badge, Button, Col, Icon, Menu, Row} from 'antd';
+import {Avatar, Button, Col, Icon, Menu, Row} from 'antd';
 import {Link} from 'react-router-dom';
-
 import './NavBar.scss';
 import SearchBar from '../SearchBar/SearchBar';
 import MY_SERVICE from '../../services';
 import Dropdown from 'antd/es/dropdown';
+//import MessageIcon from "../MessageIcon/MessageIcon";
 
 export default class NavBar extends Component {
   handleLogout = async e => {
@@ -26,22 +26,14 @@ export default class NavBar extends Component {
         </div>
         {currentUser ? (
           <div className="mid">
-            <div className="icons">
-              <Link to="/messages">
-                <Badge count={5}>
-                  <Icon
-                    type="mail"
-                    style={{
-                      fontSize: '25px',
-                      color: '#fff'
-                    }}
-                  />
-                </Badge>
-              </Link>
-            </div>
-            <div className="search">
-              <SearchBar history={this.props.history} />
-            </div>
+              <div className="icons">
+                  <Link to="/messages">
+                      {/* <MessageIcon/> */}
+                  </Link>
+              </div>
+              <div className="search">
+                  <SearchBar history={this.props.history}/>
+              </div>
           </div>
         ) : (
           <div className="mid" />

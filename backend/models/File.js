@@ -6,15 +6,15 @@ const fileSchema = new Schema(
       type: String,
       required: true,
     },
-    url: {
+    photo: {
       type: String,
       required: true,
     },
-    type: {
-      type: String,
-      enum: ['Image', 'Sheet'],
-      required: true,
-    },
+    // type: {
+    //   type: String,
+    //   enum: ['Imagen', 'Partitura'],
+    //   required: true,
+    // },
     description: String,
     mimeType: String,
   },

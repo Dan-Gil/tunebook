@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const File = require('../models/File');
+const uploadCloudinary = require('../config/cloudinary')
 
 router.get('/file/:id', (req, res, next) => {
   File.findById(req.params.id)
@@ -8,7 +9,10 @@ router.get('/file/:id', (req, res, next) => {
     .catch((err) => res.status(500).json({err}));
 });
 
-router.post('/file', (req, res, next) => {
+router.post('/file', uploadCloudinary.single('photo'), (req, res, next) => {
+  if(req.file){
+    req.body.photo = req.file.secure_url
+  }
   File.create(req.body)
     .then((file) => res.status(201).json(file))
     .catch((err) => res.status(500).json({err}));
