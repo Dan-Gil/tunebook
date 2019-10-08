@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Card, Input, Icon, Form, Button, Select} from 'antd';
 import MY_SERVICE from '../../services';
+
 export default class FileForm extends Component {
   state = {
     file: {
@@ -29,15 +30,12 @@ export default class FileForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
     console.log(this.state);
-
     const uploadFile = new FormData();
     uploadFile.set('name', this.state.file.name);
     uploadFile.append('photo', this.state.file.photo);
     uploadFile.append('description', this.state.file.description);
     uploadFile.append('type', this.state.file.type);
-
     MY_SERVICE.uploadFile(uploadFile)
       .then(response => {
         console.log(response.data);
@@ -50,10 +48,8 @@ export default class FileForm extends Component {
 
   handleUploadFileChange = e => {
     e.preventDefault();
-
     const reader = new FileReader();
     const photo = e.target.files[0];
-
     reader.onloadend = () => {
       this.setState({
         file: {
@@ -69,6 +65,7 @@ export default class FileForm extends Component {
 
   render() {
     const {Option} = Select;
+
     return (
       <div
         style={{
@@ -131,6 +128,7 @@ export default class FileForm extends Component {
             </Form.Item>
           </Form>
         </Card>
+        <Card>{this.state.file.photo}</Card>
       </div>
     );
   }

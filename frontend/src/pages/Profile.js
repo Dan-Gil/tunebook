@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Avatar, Card} from 'antd';
 import MY_SERVICE from '../services/index';
-import FileForm from '../components/File/FileForm'
+import FileForm from '../components/File/FileForm';
 
 export default class Profile extends Component {
   state = {
@@ -15,9 +15,8 @@ export default class Profile extends Component {
   };
 
   componentDidMount() {
-    // eslint-disable-next-line
     const loggedIn = MY_SERVICE.loggedUser();
-    if (!MY_SERVICE.loggedUser()) {
+    if (!loggedIn) {
       return this.props.history.push('/login');
     }
   }
@@ -48,19 +47,22 @@ export default class Profile extends Component {
           </h1>
           <h2>Bienvenido "{loggedUser.username}" </h2>
           <div>
-              {loggedUser.photo ? (
-                    <img  src={loggedUser.photo} alt={loggedUser.username} style={{
-            borderRadius: '50%',
-            width: "100px",
-            height: '100px'
-            }}/>
-                ) : (
-                  <Avatar size="large">{loggedUser.username.slice(0, 1).toLocaleUpperCase()}</Avatar>
-                )}
-          
+            {loggedUser.photo ? (
+              <img
+                src={loggedUser.photo}
+                alt={loggedUser.username}
+                style={{
+                  borderRadius: '50%',
+                  width: '100px',
+                  height: '100px'
+                }}
+              />
+            ) : (
+              <Avatar size="large">{loggedUser.username.slice(0, 1).toLocaleUpperCase()}</Avatar>
+            )}
           </div>
         </Card>
-        <FileForm/>
+        <FileForm />
       </div>
     );
   }

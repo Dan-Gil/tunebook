@@ -27,9 +27,12 @@ const MY_SERVICE = {
   login: async user => {
     return await service.post('/login', user);
   },
-  edit: async user => {
-    return await service.put('/edit', user);
+  edit: async form => {
+    return await service.put('/edit', form);
   },
+  // allusers: async ()=>{
+  //   return await service.get('/allusers')
+  // },
 
   logOut: async () => {
     window.localStorage.removeItem('user');
