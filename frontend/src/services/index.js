@@ -50,7 +50,7 @@ const MY_SERVICE = {
     return await service.get(url);
   },
   getMessages: async (unread, skip, limit) => {
-    return await service.get(addSkipLimit(`/message${unread ? '?unread' : ''}`, skip, limit));
+    return await service.get(addSkipLimit(`/message${unread ? '?unread=1' : ''}`, skip, limit));
   },
 
   uploadFile: async data => {
