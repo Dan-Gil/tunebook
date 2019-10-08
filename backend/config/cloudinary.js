@@ -11,7 +11,7 @@ cloudinary.config({
 
 const storage = cloudinaryStorage({
   cloudinary,
-  folder: 'ironstorage',
+  folder: 'tunebook',
   allowedFormats: ['jpg', 'png', 'pdf'],
   filename: (req, file, callback) => {
     callback(null, file.originalname);

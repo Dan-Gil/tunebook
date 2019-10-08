@@ -51,12 +51,14 @@ const user = require('./routes/user');
 const instrument = require('./routes/instrument');
 const genre = require('./routes/genre');
 const file = require('./routes/file');
+const message = require('./routes/message');
 app.use('/', index);
 app.use('/', auth);
 app.use('/', file);
 app.use('/', instrument);
 app.use('/', genre);
 app.use('/', user);
+app.use('/', message);
 
 // Uncomment this line for production
 // app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));

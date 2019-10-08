@@ -10,11 +10,11 @@ const fileSchema = new Schema(
       type: String,
       required: true,
     },
-    // type: {
-    //   type: String,
-    //   enum: ['Imagen', 'Partitura'],
-    //   required: true,
-    // },
+    type: {
+      type: String,
+      enum: ['Imagen', 'Partitura'],
+      required: true,
+    },
     description: String,
     mimeType: String,
   },

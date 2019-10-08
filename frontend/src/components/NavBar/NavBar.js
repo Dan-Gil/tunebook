@@ -5,7 +5,7 @@ import './NavBar.scss';
 import SearchBar from '../SearchBar/SearchBar';
 import MY_SERVICE from '../../services';
 import Dropdown from 'antd/es/dropdown';
-//import MessageIcon from "../MessageIcon/MessageIcon";
+import MessageIcon from "../MessageIcon/MessageIcon";
 
 export default class NavBar extends Component {
   handleLogout = async e => {
@@ -28,7 +28,7 @@ export default class NavBar extends Component {
           <div className="mid">
               <div className="icons">
                   <Link to="/messages">
-                      {/* <MessageIcon/> */}
+                      <MessageIcon/>
                   </Link>
               </div>
               <div className="search">

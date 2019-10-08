@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Button} from 'antd';
+import {Button, Form, Icon, Input, Card} from 'antd';
 import MY_SERVICE from '../services/index';
 
 class EditUser extends Component {
@@ -22,7 +22,7 @@ class EditUser extends Component {
   };
 
   componentDidMount() {
-    let {user} = this.state;
+   
     const {id} = this.props.match.params;
     axios
       .get(`http://localhost:3000/user/${id}`)
@@ -40,22 +40,15 @@ class EditUser extends Component {
   };
 
   onSubmit = e => {
-    e.preventDefault();
-    let {user, form} = this.state;
-    const {id} = this.props.match.params;
-    axios
-      .put(`http://localhost:3000/user/${id}`, user)
-      .then(({data}) => {
-        console.log(data);
-        this.setState({
-          user: {}
-        });
-        this.props.history.push('/user');
+     e.preventDefault();
+    MY_SERVICE.edit(this.state.user)
+      .then(response => {
+        MY_SERVICE.logUser(response.data.user);
+        this.props.history.push('/profile');
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(console.error());
   };
+  
 
   submitEditForm = async e => {
     try {
@@ -93,184 +86,81 @@ class EditUser extends Component {
           height: '100vh'
         }}
       >
-        <div className={{width: '50vw'}}>
-          <form onSubmit={this.onSubmit}>
-            <div
-              className="container sign-up-total"
-              style={{
-                display: 'flex',
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat'
-              }}
-            >
-              <div
-                className="col-md-6"
-                style={{
-                  display: 'inline-block',
-                  marginTop: '20px'
-                }}
-              >
-                {/* Username */}
-                <div className="form-group">
-                  <h1>Edit User</h1>
-                </div>
-                <div className="form-group">
-                  <label for="formGroupExampleInput">Username</label>
-                  <input
-                    style={{
-                      height: '40px',
-                      backgroundColor: '#EEEEEE',
-                      border: 'none',
-                      borderStyle: 'none'
-                    }}
+        <Card style={{width: '50vw'}}>
+            <h1
+            style={{
+              color: '#342c4f'
+            }}
+          >
+            Edita tu perfil
+          </h1>
+          
+              <Form onSubmit={this.onSubmit}>
+                <Form.Item label="Nombre">
+                  <Input
                     type="text"
-                    className="form-control"
+                    onChange={this.handleInput}
+                    name="name"
+                    prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
+                    placeholder="Name"
+                  />
+                </Form.Item>
+                <Form.Item label="Apellido">
+                  <Input
+                    type="text"
+                    onChange={this.handleInput}
+                    name="lastName"
+                    prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
+                    placeholder="Apellido"
+                  />
+                </Form.Item>
+                <Form.Item label="Nombre de usuario">
+                  <Input
+                    type="text"
                     onChange={this.handleInput}
                     name="username"
-                    value={user.username}
+                    prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
+                    placeholder="Nombre de usuario"
                   />
-                </div>
-                {/* Email */}
-
-                <div className="form-group">
-                  <label for="formGroupExampleInput">Email</label>
-                  <input
-                    style={{
-                      height: '40px',
-                      backgroundColor: '#EEEEEE',
-                      border: 'none',
-                      borderStyle: 'none'
-                    }}
+                </Form.Item>
+                <Form.Item label="Correo Electrónico">
+                  <Input
                     type="email"
-                    className="form-control"
                     onChange={this.handleInput}
                     name="email"
-                    value={user.email}
+                    prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}} />}
+                    placeholder="Correo Electrónico"
                   />
-                </div>
-                {/* Password */}
-
-                <div className="form-group">
-                  <label for="formGroupExampleInput">Password</label>
-                  <input
-                    style={{
-                      height: '40px',
-                      backgroundColor: '#EEEEEE',
-                      border: 'none',
-                      borderStyle: 'none'
-                    }}
+                </Form.Item>
+                <Form.Item label="Contraseña">
+                  <Input
+                    onChange={this.handleInput}
                     type="password"
-                    className="form-control"
-                    onChange={this.handleInput}
-                    value={user.password}
                     name="password"
+                    prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />}
+                    placeholder="Contraseña"
                   />
-                </div>
-
-                {/* Role
-
-                <div className="form-group">
-                  <label for="formGroupExampleInput">Role</label>
-                  <input
-                    style={{
-                      height: '40px',
-                      backgroundColor: '#EEEEEE',
-                      border: 'none',
-                      borderStyle: 'none'
-                    }}
-                    className="form-control"
-                    onChange={this.handleInput}
+                </Form.Item>
+                <Form.Item label="Foto de Perfil">
+                  <Input
                     type="text"
-                    name="role"
-                    value={user.role}
-                  />
-                </div> */}
-
-                {/* Place Preference
-                <div className="form-group">
-                  <label for="formGroupExampleInput">Place Preference</label>
-                  <input
-                    style={{
-                      height: '40px',
-                      backgroundColor: '#EEEEEE',
-                      border: 'none',
-                      borderStyle: 'none'
-                    }}
-                    className="form-control"
                     onChange={this.handleInput}
-                    type="text"
-                    name="placePreference"
-                    value={user.placePreference}
+                    name="photo"
+                    prefix={<Icon type="picture" style={{color: 'rgba(0,0,0,.25)'}} />}
+                    placeholder="Imagen Url"
                   />
-                </div> */}
+                </Form.Item>
+                  <Form.Item>
+                 
+                    <Button htmlType="submit" type="primary">
+                      Actualiza
+                    </Button>
+                  
 
-                {/* Image*/}
-                <div className="form-group">
-                  <label for="formGroupExampleInput">Image</label>
-                  <input
-                    style={{
-                      height: '40px',
-                      backgroundColor: '#EEEEEE',
-                      border: 'none',
-                      borderStyle: 'none'
-                    }}
-                    className="form-control"
-                    onChange={this.handleInput}
-                    type="text"
-                    name="image"
-                    placeholder="Image URL"
-                    value={user.image}
-                  />
-                </div>
-
-                {/* Genres*/}
-                <div className="form-group">
-                  <label for="formGroupExampleInput">Genres</label>
-                  <input
-                    style={{
-                      height: '40px',
-                      backgroundColor: '#EEEEEE',
-                      border: 'none',
-                      borderStyle: 'none'
-                    }}
-                    className="form-control"
-                    onChange={this.handleInput}
-                    type="text"
-                    name="genres"
-                    value={user.genres}
-                  />
-                </div>
-              </div>
-              {/* <div
-                className="col-md-4 offset-md-1"
-                style={{
-                  display: 'inline-block',
-                  marginTop: '30px'
-                }}
-              >
-                <div>
-                  <h2>Hello!</h2>
-                </div>
-                <div>
-                  <h4>Welcome to The Book Club</h4>
-                </div>
-                <div
-                  className="text-container"
-                  style={{
-                    marginTop: '130px',
-                    marginBottom: '50px',
-                    height: '60px'
-                  }}
-                ></div> */}
-
-              <Button bg="black" htmlType="submit">
-                Edit user
-              </Button>
-            </div>
-            {/* </div> */}
-          </form>
-        </div>
+                </Form.Item>
+                </Form>
+          </Card>
+        
       </div>
     );
   }
