@@ -20,9 +20,15 @@ export default class MessageIcon extends Component {
         setTimeout(this.getMessages, 30000);
       })
       .catch(e => {
-        console.error(e);
+        // console.error(e);
         setTimeout(this.getMessages, 30000);
       });
+  };
+
+  handleIconClick = () => {
+    this.setState({
+      messages: 0
+    });
   };
 
   render() {
@@ -34,6 +40,7 @@ export default class MessageIcon extends Component {
             fontSize: '25px',
             color: '#fff'
           }}
+          onClick={this.handleIconClick}
         />
       </Badge>
     );

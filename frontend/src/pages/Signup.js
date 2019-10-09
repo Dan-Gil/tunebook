@@ -155,7 +155,7 @@ export default class Signup extends Component {
                 <div>
                   <img
                     src="https://media.timeout.com/images/101206597/630/472/image.jpg"
-                    alt="carousel image"
+                    alt="carousel"
                     style={{
                       height: '300px',
                       objectFit: 'cover'

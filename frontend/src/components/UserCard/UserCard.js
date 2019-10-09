@@ -1,53 +1,59 @@
 import React, {Component} from 'react';
-import MY_SERVICE from '../../services';
-import {Card, Descriptions, Avatar} from 'antd';
+import {Avatar, Card, Col, Descriptions, Row} from 'antd';
+
+import "./UserCard.scss";
 
 export default class UserCard extends Component {
-  state = {
-    user: ''
-  };
-
-  componentDidMount() {
-    const loggedIn = MY_SERVICE.loggedUser();
-    if (!loggedIn) {
-      return this.props.history.push('/login');
-    }
-  }
 
   render() {
-    const loggedUser = MY_SERVICE.loggedUser();
+    const loggedUser = this.props.user;
 
-    console.log(loggedUser);
-    if (!MY_SERVICE.loggedUser()) {
+    if (!loggedUser) {
       return null;
     }
     return (
-      <div>
-        <Card md={4} offset={8} span={8}>
-          <h1
-            style={{
-              color: '#342c4f'
-            }}
-          >
-            Mi perfil
-          </h1>
-          <h2>Bienvenid@ "{loggedUser.username}" </h2>
-          <div>
-            <span className="profile-photo">
-              {loggedUser.photo ? (
-                <Avatar size={150} src={loggedUser.photo} />
-              ) : (
-                <Avatar size={150}>{loggedUser.username.slice(0, 1).toLocaleUpperCase()}</Avatar>
-              )}
-            </span>
-            <Descriptions title="Información del Usuario">
-              <Descriptions.Item label="Nombre">{loggedUser.name}</Descriptions.Item>
-              <Descriptions.Item label="Apellido">{loggedUser.lastName}</Descriptions.Item>
-              <Descriptions.Item label="Correo Electrónico">{loggedUser.email}</Descriptions.Item>
-              {/* <Descriptions.Item label="Géneros">{loggedUser.genres[0].name}</Descriptions.Item> */}
-            </Descriptions>
-          </div>
-          <div></div>
+      <div className="user-card">
+        <Card>
+          <Row>
+            <Col xl={6}>
+              <span className="profile-photo">
+                {loggedUser.photo ? (
+                  <Avatar size={200} src={loggedUser.photo}/>
+                ) : (
+                  <Avatar size={200}>{loggedUser.username.slice(0, 1).toLocaleUpperCase()}</Avatar>
+                )}
+              </span>
+            </Col>
+            <Col xl={18}>
+              <Descriptions title="Información del Usuario">
+                <Descriptions.Item label={<strong>Nombre</strong>}>{loggedUser.name}</Descriptions.Item>
+                <Descriptions.Item label="Apellido">{loggedUser.lastName}</Descriptions.Item>
+                <Descriptions.Item label="Correo Electrónico">{loggedUser.email}</Descriptions.Item>
+                <Descriptions.Item label="Géneros">
+                  <ul>
+                    {
+                      loggedUser.genres.map((genre) => (
+                        <li key={genre._id}>
+                          {genre.name}
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </Descriptions.Item>
+                <Descriptions.Item label="Instrumentos">
+                  <ul>
+                    {
+                      loggedUser.instruments.map((instrument) => (
+                        <li key={instrument._id}>
+                          {instrument.name}
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </Descriptions.Item>
+              </Descriptions>
+            </Col>
+          </Row>
         </Card>
       </div>
     );

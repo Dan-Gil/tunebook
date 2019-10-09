@@ -67,7 +67,12 @@ const MY_SERVICE = {
     };
     return await service.post('/message', data);
   },
-
+  markMessagesRead: async () => {
+    return await service.put('/message/read', {});
+  },
+  getProfile: async () => {
+    return await service.get('/profile');
+  },
   uploadFile: async data => {
     return await service({
       method: 'post',

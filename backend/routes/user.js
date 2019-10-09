@@ -62,19 +62,14 @@ router.get('/user', (req, res, next) => {
   console.log(JSON.stringify(search));
 
   User.find(search, null, options)
-    .populate('instruments')
-    .populate('genres')
-    .populate('friends')
-    .populate('files')
+    .populate('instruments genres friends files')
     .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json({err}));
 });
 
 router.get('/user/:id', async (req, res, next) => {
   await User.findById(req.params.id)
-    .populate('instruments')
-    .populate('genres')
-    .populate('friends')
+    .populate('instruments genres friends files')
     .then(user => res.status(200).json(user))
     .catch(err => res.status(500).json({err}));
 });

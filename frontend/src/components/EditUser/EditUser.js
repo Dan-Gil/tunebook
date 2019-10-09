@@ -28,8 +28,8 @@ class EditUser extends Component {
     this.setState({
       user: {
         ...this.state.user,
-        instruments: MY_SERVICE.loggedUser().instruments,
-        genres: MY_SERVICE.loggedUser().genres
+        instruments: this.props.user.instruments.map((item) => item._id),
+        genres: this.props.user.genres.map((item) => item._id)
       }
     });
   }
@@ -52,11 +52,12 @@ class EditUser extends Component {
     }, {});
 
     MY_SERVICE.edit(data)
-      .then(response => {
+      .then(() => {
         MY_SERVICE.logUser({
           ...MY_SERVICE.loggedUser(),
           ...data
         });
+        this.props.onSave();
       })
       .catch(console.error);
   };
@@ -101,21 +102,13 @@ class EditUser extends Component {
 
   render() {
     // console.log(this.state)
-    const loggedUser = MY_SERVICE.loggedUser();
+    const loggedUser = this.props.user;
     const instruments = this.state.instruments.map(d => <Option key={d._id}>{d.name}</Option>);
     const genres = this.state.genres.map(d => <Option key={d._id}>{d.name}</Option>);
 
     return (
       <div>
         <Card md={4} offset={8} span={8}>
-          <h1
-            style={{
-              color: '#342c4f'
-            }}
-          >
-            Edita tu perfil
-          </h1>
-
           <Form onSubmit={this.onSubmit}>
             <Form.Item label="Nombre">
               <Input

@@ -1,167 +1,159 @@
 import React, {Component} from 'react';
-import FileForm from '../components/File/FileForm';
 import EditUser from '../components/EditUser/EditUser';
 import UserCard from '../components/UserCard/UserCard';
-import {Card, Input, Icon, Form, Button, Select, Row, Modal} from 'antd';
+import FileForm from '../components/FileForm/FileForm';
+import {Button, Card, Carousel, Col, Modal, Row} from 'antd';
 import MY_SERVICE from '../services';
 
 export default class Profile extends Component {
   state = {
-    visible: false,
-    file: {
-      name: '',
-      photo: '',
-      description: '',
-      type: ''
-    }
+    userModalVisible: false,
+    fileModalVisible: false,
+    user: null,
   };
 
-  showModal = () => {
+  componentDidMount() {
+    this.loadProfile();
+  }
+
+  showUserModal = () => {
     this.setState({
-      visible: true
+      userModalVisible: true
     });
   };
 
-  handleOk = e => {
+  showFileModal = () => {
     this.setState({
-      visible: false
+      fileModalVisible: true
     });
   };
 
   handleCancel = e => {
     this.setState({
-      visible: false
+      fileModalVisible: false,
+      userModalVisible: false,
     });
   };
 
-  handleInput = e => {
-    const {file} = this.state;
-    const key = e.target.name;
-    file[key] = e.target.value;
-    this.setState({file});
-  };
-
-  handleSelect = (name, value) => {
-    this.setState({
-      file: {
-        ...this.state.file,
-        [name]: value
-      }
-    });
-  };
-
-  onSubmit = e => {
-    e.preventDefault();
-    const uploadFile = new FormData();
-    uploadFile.set('name', this.state.file.name);
-    uploadFile.append('photo', this.state.file.photo);
-    uploadFile.append('description', this.state.file.description);
-    uploadFile.append('type', this.state.file.type);
-    MY_SERVICE.uploadFile(uploadFile)
-      .then(response => {
-        console.log(response.data);
-        this.props.history.push('/profile');
+  loadProfile = () => {
+    MY_SERVICE.getProfile()
+      .then(({data}) => {
+        this.setState({user: data.user});
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(console.error);
   };
 
-  handleUploadFileChange = e => {
-    e.preventDefault();
-    const reader = new FileReader();
-    const photo = e.target.files[0];
-    reader.onloadend = () => {
-      this.setState({
-        file: {
-          ...this.state.file,
-          photo,
-          photoPreview: reader.result
-        }
-      });
-    };
-
-    reader.readAsDataURL(photo);
+  handleSave = e => {
+    this.loadProfile();
+    this.setState({
+      fileModalVisible: false,
+      userModalVisible: false,
+    });
   };
 
   render() {
-    const {Option} = Select;
+    if (!this.state.user) {
+      return null;
+    }
+    const images = this.state.user.files
+      .filter(file => file.type === 'Imagen');
     return (
       <div>
         <Row>
-          <UserCard />
-          <Button type="primary" onClick={this.showModal}>
-            Edita Tu perfil
-          </Button>
-          <Modal title="Basic Modal" visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
-            <EditUser />
-          </Modal>
-          {/* 
-          <Button type="primary" onClick={this.showModal}>
-            aquì va modal de archivo
-          </Button>
-          <Modal
-            title="Basic Modal"
-            visible={this.state.visible}
-            onOk={this.handleOk}
-            onCancel={this.handleCancel}
-          >
-            <FileForm /> 
-          </Modal> */}
-
-          <div>
-            <Card md={4} offset={8} span={8}>
-              <h2
+          <Col
+            xl={
+              {
+                span: 16,
+                offset: 4,
+              }
+            }
+            xxl={
+              {
+                span: 12,
+                offset: 6,
+              }
+            }>
+            <Card>
+              <h1
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: '2% 0'
+                  color: '#342c4f'
                 }}
               >
-                Añade archivos
-              </h2>
-              <Form onSubmit={this.onSubmit} encType="multipart/form-data">
-                <Form.Item label="Nombre del Archivo">
-                  <Input
-                    type="text"
-                    onChange={this.handleInput}
-                    name="name"
-                    prefix={<Icon type="file" style={{color: 'rgba(0,0,0,.25)'}} />}
-                    placeholder="Nombre del Archivo"
-                  />
-                </Form.Item>
-                <Form.Item label="Descripción">
-                  <Input
-                    type="text"
-                    onChange={this.handleInput}
-                    name="description"
-                    prefix={<Icon type="form" style={{color: 'rgba(0,0,0,.25)'}} />}
-                    placeholder="Descripción"
-                  />
-                </Form.Item>
-                <Form.Item label="Agrega tus archivos">
-                  <Input
-                    type="file"
-                    onChange={this.handleUploadFileChange}
-                    name="photo"
-                    prefix={<Icon type="picture" style={{color: 'rgba(0,0,0,.25)'}} />}
-                  />
-                </Form.Item>
-                <Form.Item label="Selecciona el tipo de archivo">
-                  <Select onChange={this.handleSelect.bind(this, 'type')} placeholder="Selecciona el tipo de archivo">
-                    <Option value="Imagen">Imagen</Option>
-                    <Option value="Partitura">Partitura</Option>
-                  </Select>
-                </Form.Item>
-                <Form.Item>
-                  <Button htmlType="submit" type="primary">
-                    Agregar
-                  </Button>
-                </Form.Item>
-              </Form>
+                Mi perfil
+              </h1>
+              <h2>Bienvenid@ "{this.state.user.username}" </h2>
             </Card>
-          </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col
+            xl={
+              {
+                span: 16,
+                offset: 4,
+              }
+            }
+            xxl={
+              {
+                span: 12,
+                offset: 6,
+              }
+            }
+          >
+            <UserCard user={this.state.user}/>
+            <Button type="primary" onClick={this.showUserModal}>
+              Edita Tu perfil
+            </Button>
+            <Modal
+              title="Edita tu perfil"
+              visible={this.state.userModalVisible}
+              onCancel={this.handleCancel}
+            >
+              <EditUser onSave={this.handleSave} user={this.state.user}/>
+            </Modal>
+            <Button type="primary" onClick={this.showFileModal}>
+              Agrega archivo
+            </Button>
+            <Modal
+              title="Agrega archivo"
+              visible={this.state.fileModalVisible}
+              onCancel={this.handleCancel}
+            >
+              <FileForm onSave={this.handleSave}/>
+            </Modal>
+          </Col>
+        </Row>
+        <Row>
+          <Col
+            xl={
+              {
+                span: 16,
+                offset: 4,
+              }
+            }
+            xxl={
+              {
+                span: 12,
+                offset: 6,
+              }
+            }
+          >
+            <Card>
+              <Carousel
+                effect="fade"
+                autoplay
+              >
+                {
+                  images
+                    .map((file) => (
+                    <div key={file._id}>
+                      <img src={file.photo} alt={file.name} style={{width: "100%", height: "auto"}}/>
+                    </div>
+                  ))
+                }
+              </Carousel>
+            </Card>
+          </Col>
         </Row>
       </div>
     );

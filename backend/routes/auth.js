@@ -11,8 +11,10 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
-  const {user} = req;
-  res.status(200).json({user});
+  User.findById(req.user._id)
+    .populate('instruments genres friends files')
+    .then(user => res.status(200).json({user}))
+    .catch(err => res.status(500).json({err}));
 });
 
 router.get('/logout', (req, res, next) => {
@@ -22,6 +24,7 @@ router.get('/logout', (req, res, next) => {
 
 router.get('/profile', isAuth, (req, res, next) => {
   User.findById(req.user._id)
+    .populate('instruments genres friends files')
     .then(user => res.status(200).json({user}))
     .catch(err => res.status(500).json({err}));
 });

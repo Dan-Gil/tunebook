@@ -13,10 +13,10 @@ const DefaultLayout = ({component: Component, ...rest}) => {
       {...rest}
       render={matchProps => (
         <Layout style={{minHeight: '100vh'}}>
-          <Header>
+          <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
             <NavBar {...matchProps} />
           </Header>
-          <Layout>
+          <Layout style={{paddingTop: 70}}>
             <Content>
               <Component {...matchProps} />
             </Content>

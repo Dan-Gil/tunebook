@@ -10,7 +10,7 @@ router.get('/message', isAuth, (req, res, next) => {
   };
 
   if (req.query.unread) {
-    search.read = false;
+    search.read = {$ne: true};
   }
 
   if (req.query.skip) {
@@ -22,12 +22,23 @@ router.get('/message', isAuth, (req, res, next) => {
   }
 
   Message.find(search, null, options)
+    .populate('to from')
     .then(messages => res.status(200).json(messages))
+    .catch(err => res.status(500).json({err}));
+});
+
+router.put('/message/read', isAuth, (req, res, next) => {
+  Message.update({
+    to: req.user._id,
+    read: {$ne: true}
+  }, {$set: {read: true}}, {multi: true})
+    .then(() => res.status(200).json({}))
     .catch(err => res.status(500).json({err}));
 });
 
 router.get('/message/:id', (req, res, next) => {
   Message.findById(req.params.id)
+    .populate('to from')
     .then(message => res.status(200).json(message))
     .catch(err => res.status(500).json({err}));
 });
@@ -43,5 +54,6 @@ router.delete('/message/:id', (req, res, next) => {
     .then(() => res.status(200).json({}))
     .catch(err => res.status(500).json({err}));
 });
+
 
 module.exports = router;
