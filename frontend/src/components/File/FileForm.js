@@ -30,7 +30,6 @@ export default class FileForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
     const uploadFile = new FormData();
     uploadFile.set('name', this.state.file.name);
     uploadFile.append('photo', this.state.file.photo);
@@ -67,17 +66,8 @@ export default class FileForm extends Component {
     const {Option} = Select;
 
     return (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          width: '100vw',
-          height: '100vh'
-        }}
-      >
-        <Card style={{width: '50vw'}}>
+      <div>
+        <Card md={4} offset={8} span={8}>
           <h2
             style={{
               display: 'flex',

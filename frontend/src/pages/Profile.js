@@ -1,68 +1,168 @@
 import React, {Component} from 'react';
-import {Avatar, Card} from 'antd';
-import MY_SERVICE from '../services/index';
 import FileForm from '../components/File/FileForm';
+import EditUser from '../components/EditUser/EditUser';
+import UserCard from '../components/UserCard/UserCard';
+import {Card, Input, Icon, Form, Button, Select, Row, Modal} from 'antd';
+import MY_SERVICE from '../services';
 
 export default class Profile extends Component {
   state = {
-    user: {
-      username: '',
+    visible: false,
+    file: {
       name: '',
-      lastName: '',
-      email: '',
-      photo: ''
+      photo: '',
+      description: '',
+      type: ''
     }
   };
 
-  componentDidMount() {
-    const loggedIn = MY_SERVICE.loggedUser();
-    if (!loggedIn) {
-      return this.props.history.push('/login');
-    }
-  }
+  showModal = () => {
+    this.setState({
+      visible: true
+    });
+  };
+
+  handleOk = e => {
+    this.setState({
+      visible: false
+    });
+  };
+
+  handleCancel = e => {
+    this.setState({
+      visible: false
+    });
+  };
+
+  handleInput = e => {
+    const {file} = this.state;
+    const key = e.target.name;
+    file[key] = e.target.value;
+    this.setState({file});
+  };
+
+  handleSelect = (name, value) => {
+    this.setState({
+      file: {
+        ...this.state.file,
+        [name]: value
+      }
+    });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+    const uploadFile = new FormData();
+    uploadFile.set('name', this.state.file.name);
+    uploadFile.append('photo', this.state.file.photo);
+    uploadFile.append('description', this.state.file.description);
+    uploadFile.append('type', this.state.file.type);
+    MY_SERVICE.uploadFile(uploadFile)
+      .then(response => {
+        console.log(response.data);
+        this.props.history.push('/profile');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  handleUploadFileChange = e => {
+    e.preventDefault();
+    const reader = new FileReader();
+    const photo = e.target.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        file: {
+          ...this.state.file,
+          photo,
+          photoPreview: reader.result
+        }
+      });
+    };
+
+    reader.readAsDataURL(photo);
+  };
 
   render() {
-    const loggedUser = MY_SERVICE.loggedUser();
-    if (!MY_SERVICE.loggedUser()) {
-      return null;
-    }
+    const {Option} = Select;
     return (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          width: '100vw',
-          height: '100vh'
-        }}
-      >
-        <Card style={{width: '50vw'}}>
-          <h1
-            style={{
-              color: '#342c4f'
-            }}
+      <div>
+        <Row>
+          <UserCard />
+          <Button type="primary" onClick={this.showModal}>
+            Edita Tu perfil
+          </Button>
+          <Modal title="Basic Modal" visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
+            <EditUser />
+          </Modal>
+          {/* 
+          <Button type="primary" onClick={this.showModal}>
+            aquì va modal de archivo
+          </Button>
+          <Modal
+            title="Basic Modal"
+            visible={this.state.visible}
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
           >
-            Mi perfil
-          </h1>
-          <h2>Bienvenido "{loggedUser.username}" </h2>
+            <FileForm /> 
+          </Modal> */}
+
           <div>
-            {loggedUser.photo ? (
-              <img
-                src={loggedUser.photo}
-                alt={loggedUser.username}
+            <Card md={4} offset={8} span={8}>
+              <h2
                 style={{
-                  borderRadius: '50%',
-                  width: '100px',
-                  height: '100px'
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '2% 0'
                 }}
-              />
-            ) : (
-              <Avatar size="large">{loggedUser.username.slice(0, 1).toLocaleUpperCase()}</Avatar>
-            )}
+              >
+                Añade archivos
+              </h2>
+              <Form onSubmit={this.onSubmit} encType="multipart/form-data">
+                <Form.Item label="Nombre del Archivo">
+                  <Input
+                    type="text"
+                    onChange={this.handleInput}
+                    name="name"
+                    prefix={<Icon type="file" style={{color: 'rgba(0,0,0,.25)'}} />}
+                    placeholder="Nombre del Archivo"
+                  />
+                </Form.Item>
+                <Form.Item label="Descripción">
+                  <Input
+                    type="text"
+                    onChange={this.handleInput}
+                    name="description"
+                    prefix={<Icon type="form" style={{color: 'rgba(0,0,0,.25)'}} />}
+                    placeholder="Descripción"
+                  />
+                </Form.Item>
+                <Form.Item label="Agrega tus archivos">
+                  <Input
+                    type="file"
+                    onChange={this.handleUploadFileChange}
+                    name="photo"
+                    prefix={<Icon type="picture" style={{color: 'rgba(0,0,0,.25)'}} />}
+                  />
+                </Form.Item>
+                <Form.Item label="Selecciona el tipo de archivo">
+                  <Select onChange={this.handleSelect.bind(this, 'type')} placeholder="Selecciona el tipo de archivo">
+                    <Option value="Imagen">Imagen</Option>
+                    <Option value="Partitura">Partitura</Option>
+                  </Select>
+                </Form.Item>
+                <Form.Item>
+                  <Button htmlType="submit" type="primary">
+                    Agregar
+                  </Button>
+                </Form.Item>
+              </Form>
+            </Card>
           </div>
-        </Card>
-        <FileForm />
+        </Row>
       </div>
     );
   }

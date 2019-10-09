@@ -1,30 +1,37 @@
 import React, {Component} from 'react';
-import {Button, Form, Icon, Input, Card} from 'antd';
-import MY_SERVICE from '../services/index';
+import {Button, Form, Icon, Input, Card, Select} from 'antd';
+import MY_SERVICE from '../../services';
+
+const {Option} = Select;
 
 class EditUser extends Component {
   state = {
     user: {
-      username: '',
       email: '',
       name: '',
       lastName: '',
-      genres: '',
-      instrumets: '',
+      genres: [],
+      instruments: [],
       bio: '',
       location: '',
-      files: '',
       biography: '',
       musicReading: '',
-      influences: ''
-    }
+      influences: []
+    },
+    instruments: [],
+    genres: []
   };
 
   componentDidMount() {
-    const loggedIn = MY_SERVICE.loggedUser();
-    if (!loggedIn) {
-      return this.props.history.push('/login');
-    }
+    this.loadInstruments();
+    this.loadGenres();
+    this.setState({
+      user: {
+        ...this.state.user,
+        instruments: MY_SERVICE.loggedUser().instruments,
+        genres: MY_SERVICE.loggedUser().genres
+      }
+    });
   }
 
   handleInput = e => {
@@ -36,30 +43,71 @@ class EditUser extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    MY_SERVICE.edit(this.state.user)
+
+    const data = Object.entries(this.state.user).reduce((res, [key, value]) => {
+      if (value && value.length > 0) {
+        res[key] = value;
+      }
+      return res;
+    }, {});
+
+    MY_SERVICE.edit(data)
       .then(response => {
-        MY_SERVICE.logUser(response.data.user);
-        this.props.history.push('/profile');
+        MY_SERVICE.logUser({
+          ...MY_SERVICE.loggedUser(),
+          ...data
+        });
       })
-      .catch(console.error());
+      .catch(console.error);
+  };
+
+  loadInstruments = () => {
+    MY_SERVICE.getInstruments()
+      .then(({data}) => {
+        this.setState({
+          instruments: data
+        });
+      })
+      .catch(console.error);
+  };
+
+  handleInstrumentChange = value => {
+    this.setState({
+      user: {
+        ...this.state.user,
+        instruments: value
+      }
+    });
+  };
+
+  loadGenres = () => {
+    MY_SERVICE.getGenres()
+      .then(({data}) => {
+        this.setState({
+          genres: data
+        });
+      })
+      .catch(console.error);
+  };
+
+  handleGenresChange = value => {
+    this.setState({
+      user: {
+        ...this.state.user,
+        genres: value
+      }
+    });
   };
 
   render() {
+    // console.log(this.state)
     const loggedUser = MY_SERVICE.loggedUser();
-    //const {user} = this.state;
-    //console.log(this.props);
+    const instruments = this.state.instruments.map(d => <Option key={d._id}>{d.name}</Option>);
+    const genres = this.state.genres.map(d => <Option key={d._id}>{d.name}</Option>);
+
     return (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          width: '100vw',
-          height: '100vh'
-        }}
-      >
-        <Card style={{width: '50vw'}}>
+      <div>
+        <Card md={4} offset={8} span={8}>
           <h1
             style={{
               color: '#342c4f'
@@ -87,15 +135,6 @@ class EditUser extends Component {
                 placeholder={loggedUser.lastName}
               />
             </Form.Item>
-            <Form.Item label="Nombre de usuario">
-              <Input
-                type="text"
-                onChange={this.handleInput}
-                name="username"
-                prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
-                placeholder={loggedUser.username}
-              />
-            </Form.Item>
             <Form.Item label="Correo Electrónico">
               <Input
                 type="email"
@@ -103,15 +142,6 @@ class EditUser extends Component {
                 name="email"
                 prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}} />}
                 placeholder={loggedUser.email}
-              />
-            </Form.Item>
-            <Form.Item label="Contraseña">
-              <Input
-                onChange={this.handleInput}
-                type="password"
-                name="password"
-                prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />}
-                placeholder="Contraseña"
               />
             </Form.Item>
             <Form.Item label="Foto de Perfil">
@@ -122,6 +152,32 @@ class EditUser extends Component {
                 prefix={<Icon type="picture" style={{color: 'rgba(0,0,0,.25)'}} />}
                 placeholder="Imagen Url"
               />
+            </Form.Item>
+            <Form.Item label="Selecciona Instrumentos">
+              <Select
+                showSearch
+                mode="multiple"
+                defaultActiveFirstOption={false}
+                filterOption={false}
+                onChange={this.handleInstrumentChange}
+                notFoundContent={null}
+                value={this.state.user.instruments}
+              >
+                {instruments}
+              </Select>
+            </Form.Item>
+            <Form.Item label="Géneros">
+              <Select
+                showSearch
+                mode="multiple"
+                defaultActiveFirstOption={false}
+                filterOption={false}
+                onChange={this.handleGenresChange}
+                notFoundContent={null}
+                value={this.state.user.genres}
+              >
+                {genres}
+              </Select>
             </Form.Item>
             <Form.Item>
               <Button htmlType="submit" type="primary">

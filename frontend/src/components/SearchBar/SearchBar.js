@@ -29,6 +29,9 @@ export default class SearchBar extends Component {
 
   handleSelect = value => {
     this.props.history.push(`/user/${value}`);
+    this.setState({
+      data: []
+    });
   };
 
   render() {
@@ -68,6 +71,7 @@ export default class SearchBar extends Component {
           onSearch={this.handleSearch}
           onBlur={this.handleBlur}
           onSelect={this.handleSelect}
+          value=""
         >
           {options}
         </Select>

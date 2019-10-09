@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import MY_SERVICE from '../services/index';
+// import UserCard from '../components/UserCard/UserCard';
 
 export default class Dashboard extends Component {
   state = {
@@ -19,8 +20,9 @@ export default class Dashboard extends Component {
     }
     return (
       <div>
-        <h1>Test</h1>
-        <h2>Bienvenido {loggedUser.username} </h2>
+        <h2>Bienvenid@ "{loggedUser.username}" </h2>
+
+        {/* <UserCard /> */}
       </div>
     );
   }

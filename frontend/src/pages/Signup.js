@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Input, Icon, Form, Button, Row, Col} from 'antd';
+import {Card, Input, Icon, Form, Button, Row, Col, Carousel} from 'antd';
 import MY_SERVICE from '../services/index';
 import {Link} from 'react-router-dom';
 
@@ -99,29 +99,71 @@ export default class Signup extends Component {
                   />
                 </Form.Item>
                 <Form.Item>
-                  <Col offset={4} span={8}>
+                  <Col offset={2} span={8}>
                     <Button htmlType="submit" type="primary">
                       Regístrate
                     </Button>
                   </Col>
 
-                  <Col offset={4} span={8}>
+                  <Col offset={2} span={8}>
                     <Link to="/">
                       {' '}
                       <Button type="primary">Home</Button>
                     </Link>
                   </Col>
                 </Form.Item>
+                <small>
+                  {' '}
+                  Si ya tienes una cuenta, puedes ingresar <Link to="/login">aquí</Link>.
+                </small>
               </Form>
             </Card>
           </Col>
           <Col span={8}>
-            <Card
-              className="left-side"
-              style={{
-                height: '100%'
-              }}
-            ></Card>
+            <Card>
+              <Carousel effect="fade" autoplay>
+                <div>
+                  <img
+                    src="https://www.thepubonpearl.com/wp-content/uploads/band-parallax.jpg"
+                    alt="carousel"
+                    style={{
+                      height: '300px',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
+                <div>
+                  <img
+                    src="https://brignewspaperdotcom.files.wordpress.com/2019/09/71724727_2613067422083343_8206694299400667136_n.jpg"
+                    alt="carousel"
+                    style={{
+                      height: '300px',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
+                <div>
+                  <img
+                    src="https://ak9.picdn.net/shutterstock/videos/13289129/thumb/1.jpg"
+                    alt="carousel"
+                    style={{
+                      height: '300px',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
+                <div>
+                  <img
+                    src="https://media.timeout.com/images/101206597/630/472/image.jpg"
+                    alt="carousel image"
+                    style={{
+                      height: '300px',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
+              </Carousel>
+            </Card>
           </Col>
         </Row>
       </div>

@@ -28,18 +28,16 @@ const MY_SERVICE = {
     return await service.post('/login', user);
   },
   edit: async form => {
-    return await service.put('/edit', form);
+    return await service.put('/user', form);
   },
-  // allusers: async ()=>{
-  //   return await service.get('/allusers')
-  // },
-
   logOut: async () => {
     window.localStorage.removeItem('user');
     await service.get('/logout');
   },
   logUser: loggedUser => {
-    window.localStorage.setItem('user', JSON.stringify(loggedUser));
+    if (loggedUser) {
+      window.localStorage.setItem('user', JSON.stringify(loggedUser));
+    }
   },
   loggedUser: () => {
     return JSON.parse(window.localStorage.getItem('user'));
@@ -49,8 +47,25 @@ const MY_SERVICE = {
     url = addSkipLimit(url, skip, limit);
     return await service.get(url);
   },
+  getUser: async (id) => {
+    return await service.get(`/user/${id}`);
+  },
+  getInstruments: async () => {
+    return await service.get('/instrument');
+  },
+  getGenres: async () => {
+    return await service.get('/genre');
+  },
   getMessages: async (unread, skip, limit) => {
     return await service.get(addSkipLimit(`/message${unread ? '?unread=1' : ''}`, skip, limit));
+  },
+  sendMessage: async (to, message) => {
+    const data = {
+      message,
+      to,
+      from: MY_SERVICE.loggedUser()._id,
+    };
+    return await service.post('/message', data);
   },
 
   uploadFile: async data => {
