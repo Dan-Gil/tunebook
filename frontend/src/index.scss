@@ -1,41 +1,142 @@
-.left-side {
-  background-color: #0f0127;
-  box-sizing: border-box;
-  background-image: url('/images/logo.png');
-  background-size: 450px;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .ant-layout-header .ant-menu {
   float: right;
 }
 .ant-menu.ant-menu-dark .ant-menu-item-selected {
   background-color: #bc0ed3;
 }
-/* .ant-menu-horizontal :hover {
-  background-color: #8700a1;
-} */
 
-.ant-btn-primary {
-  background-color: #8700a1;
-  border: none;
+.login-form {
+  height: 85vh;
+  background-image: url('https://static.wixstatic.com/media/51d37609a63e4327abc37d9e89319699.jpg/v1/fill/w_2185,h_1454,al_c,q_90,usm_0.66_1.00_0.01/51d37609a63e4327abc37d9e89319699.webp');
+  background-size: cover;
+  background-position: 50% 50%;
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px black, 0 0 25px rgb(67, 19, 145), 0 0 5px darkblue;
+    font-size: 3rem;
+    padding: 3%;
+  }
+
+  div.card-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(41, 9, 82, 0.274);
+  }
+  a {
+    color: #8700a1;
+  }
+  a:hover {
+    color: #bc0ed3;
+    font-style: italic;
+  }
+  .ant-btn-primary {
+    margin: 10px 0;
+    background-color: #8700a1;
+    border: none;
+    box-shadow: -3px 7px 4px 0 rgba(9, 8, 11, 0.2), 0 6px 20px 0 rgba(41, 9, 82, 0.274);
+  }
+
+  .ant-btn-primary:hover {
+    background-color: #bc0ed3;
+    border: none;
+  }
+
+  .ant-btn-primary:focus {
+    background-color: #bc0ed3;
+    border: none;
+  }
 }
 
-.ant-btn-primary:hover {
-  background-color: #bc0ed3;
-  border: none;
-}
-.footer-redes-icon {
-  width: 40px;
-  height: auto;
-}
+.messages-form {
+  margin: 0 auto;
+  padding: 20px 0;
 
-// .anticon svg:hover {
-//   color: #bc0ed3;
-// }
+  .messages-card {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(41, 9, 82, 0.274);
+  }
+
+  .ant-comment-content-detail {
+    background-color: #aba8b545;
+    border-radius: 12px;
+    padding: 20px;
+  }
+}
+.footer-dark {
+  background: black;
+}
 
 .profile-photo {
   display: flex;
   justify-content: center;
+  span {
+    box-shadow: 0px 8px 9px 0px #2d2a2d94;
+  }
+}
+
+.not-found {
+  height: 85vh;
+  background-image: url('/images/404.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.profile-info {
+  background-image: url('https://www.tokkoro.com/picsup/3023762-band_entertainment_fun_music_musical-instrument_musicians_people_performance_stage.jpg');
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.signup-form {
+  background-image: url('https://images-na.ssl-images-amazon.com/images/I/61LdPuNtRdL._SL1001_.jpg');
+  background-size: cover;
+  background-position: 50% 50%;
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px black, 0 0 25px rgb(67, 19, 145), 0 0 5px darkblue;
+    font-size: 3rem;
+    padding: 3%;
+  }
+
+  .ant-btn-primary {
+    margin: 15px 0;
+    background-color: #8700a1;
+    border: none;
+    box-shadow: -3px 7px 4px 0 rgba(9, 8, 11, 0.2), 0 6px 20px 0 rgba(41, 9, 82, 0.274);
+  }
+
+  .ant-btn-primary:hover {
+    background-color: #bc0ed3;
+    border: none;
+  }
+
+  .ant-btn-primary:focus {
+    background-color: #bc0ed3;
+    border: none;
+  }
+
+  a {
+    color: #8700a1;
+  }
+  a:hover {
+    color: #bc0ed3;
+    font-style: italic;
+  }
+  div.card-shadow {
+    padding-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(41, 9, 82, 0.274);
+  }
+
+  .signup-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
 }

@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {Avatar, Card, Col, Descriptions, Row} from 'antd';
-
-import "./UserCard.scss";
+import './UserCard.scss';
 
 export default class UserCard extends Component {
-
   render() {
     const loggedUser = this.props.user;
 
@@ -18,7 +16,7 @@ export default class UserCard extends Component {
             <Col xl={6}>
               <span className="profile-photo">
                 {loggedUser.photo ? (
-                  <Avatar size={200} src={loggedUser.photo}/>
+                  <Avatar size={200} src={loggedUser.photo} />
                 ) : (
                   <Avatar size={200}>{loggedUser.username.slice(0, 1).toLocaleUpperCase()}</Avatar>
                 )}
@@ -27,28 +25,20 @@ export default class UserCard extends Component {
             <Col xl={18}>
               <Descriptions title="Información del Usuario">
                 <Descriptions.Item label={<strong>Nombre</strong>}>{loggedUser.name}</Descriptions.Item>
-                <Descriptions.Item label="Apellido">{loggedUser.lastName}</Descriptions.Item>
-                <Descriptions.Item label="Correo Electrónico">{loggedUser.email}</Descriptions.Item>
-                <Descriptions.Item label="Géneros">
+                <Descriptions.Item label={<strong>Apellido </strong>}>{loggedUser.lastName}</Descriptions.Item>
+                <Descriptions.Item label={<strong>Correo Electrónico</strong>}>{loggedUser.email}</Descriptions.Item>
+                <Descriptions.Item label={<strong>Géneros</strong>}>
                   <ul>
-                    {
-                      loggedUser.genres.map((genre) => (
-                        <li key={genre._id}>
-                          {genre.name}
-                        </li>
-                      ))
-                    }
+                    {loggedUser.genres.map(genre => (
+                      <li key={genre._id}>{genre.name}</li>
+                    ))}
                   </ul>
                 </Descriptions.Item>
-                <Descriptions.Item label="Instrumentos">
+                <Descriptions.Item label={<strong>Instrumentos</strong>}>
                   <ul>
-                    {
-                      loggedUser.instruments.map((instrument) => (
-                        <li key={instrument._id}>
-                          {instrument.name}
-                        </li>
-                      ))
-                    }
+                    {loggedUser.instruments.map(instrument => (
+                      <li key={instrument._id}>{instrument.name}</li>
+                    ))}
                   </ul>
                 </Descriptions.Item>
               </Descriptions>

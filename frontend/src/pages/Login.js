@@ -28,63 +28,63 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <h2
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '2% 0'
-          }}
-        >
-          Ingresa
-        </h2>
-        <Row type="flex">
-          <Col offset={4} span={8}>
-            <Card
-              style={{
-                height: '70vh'
+        <div className="login-form">
+          <h2>Inicia Sesión</h2>
+          <Row type="flex">
+            <Col
+              xl={{
+                span: 12,
+                offset: 6
+              }}
+              xxl={{
+                span: 12,
+                offset: 6
+              }}
+              xs={{
+                span: 18,
+                offset: 2
               }}
             >
-              <Form onSubmit={this.onSubmit}>
-                <Form.Item label="Username">
-                  <Input
-                    onChange={this.handleInput}
-                    type="text"
-                    name="username"
-                    prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
-                    placeholder="Username"
-                  />
-                </Form.Item>
-                <Form.Item label="Password">
-                  <Input
-                    onChange={this.handleInput}
-                    type="password"
-                    name="password"
-                    prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />}
-                    placeholder="Password"
-                  />
-                </Form.Item>
-                <small>
-                  {' '}
-                  Si no tienes una cuenta, puedes crear una <Link to="/signup">aquí</Link>.
-                </small>
-                <Form.Item>
-                  <Button htmlType="submit" type="primary">
-                    Ingresa
-                  </Button>
-                </Form.Item>
-              </Form>
-            </Card>{' '}
-          </Col>
-          <Col span={8}>
-            <Card
-              className="left-side"
-              style={{
-                height: '70vh'
-              }}
-            ></Card>
-          </Col>
-        </Row>
+              <div className="card-shadow">
+                <Card>
+                  <Form onSubmit={this.onSubmit}>
+                    <Form.Item label="Username">
+                      <Input
+                        onChange={this.handleInput}
+                        type="text"
+                        name="username"
+                        prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
+                        placeholder="Username"
+                      />
+                    </Form.Item>
+                    <Form.Item label="Password">
+                      <Input
+                        onChange={this.handleInput}
+                        type="password"
+                        name="password"
+                        prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />}
+                        placeholder="Password"
+                      />
+                    </Form.Item>
+                    <small>
+                      {' '}
+                      Si no tienes una cuenta, puedes crear una{' '}
+                      <Link to="/signup" className="text">
+                        aquí
+                      </Link>
+                      .
+                    </small>
+                    <Form.Item>
+                      <Button htmlType="submit" type="primary">
+                        Ingresa
+                      </Button>
+                    </Form.Item>
+                  </Form>
+                </Card>{' '}
+              </div>
+            </Col>
+          </Row>
+        </div>
       </div>
     );
   }

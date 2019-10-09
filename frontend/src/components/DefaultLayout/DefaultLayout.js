@@ -13,7 +13,7 @@ const DefaultLayout = ({component: Component, ...rest}) => {
       {...rest}
       render={matchProps => (
         <Layout style={{minHeight: '100vh'}}>
-          <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+          <Header style={{position: 'fixed', zIndex: 1, width: '100%'}}>
             <NavBar {...matchProps} />
           </Header>
           <Layout style={{paddingTop: 70}}>
@@ -21,10 +21,10 @@ const DefaultLayout = ({component: Component, ...rest}) => {
               <Component {...matchProps} />
             </Content>
           </Layout>
-          <Footer>
+          <Footer className="footer-dark">
             <Row>
               <div className="redes-sociales">
-                <div className="ok">
+                <div>
                   <Col offset={4} span={4}>
                     <Link to="/">
                       <Icon type="home" style={{color: '#8700a1'}} />

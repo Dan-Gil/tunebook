@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Input, Icon, Form, Button, Row, Col, Carousel} from 'antd';
+import {Card, Input, Icon, Form, Button, Row, Col} from 'antd';
 import MY_SERVICE from '../services/index';
 import {Link} from 'react-router-dom';
 
@@ -30,97 +30,110 @@ export default class Signup extends Component {
   render() {
     return (
       <div>
-        <h2
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '2% 0'
-          }}
-        >
-          Regístrate
-        </h2>
-        <Row type="flex">
-          <Col offset={4} span={8}>
-            <Card>
-              <Form onSubmit={this.onSubmit}>
-                <Form.Item label="Nombre">
-                  <Input
-                    type="text"
-                    onChange={this.handleInput}
-                    name="name"
-                    prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
-                    placeholder="Name"
-                  />
-                </Form.Item>
-                <Form.Item label="Apellido">
-                  <Input
-                    type="text"
-                    onChange={this.handleInput}
-                    name="lastName"
-                    prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
-                    placeholder="Apellido"
-                  />
-                </Form.Item>
-                <Form.Item label="Nombre de usuario">
-                  <Input
-                    type="text"
-                    onChange={this.handleInput}
-                    name="username"
-                    prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
-                    placeholder="Nombre de usuario"
-                  />
-                </Form.Item>
-                <Form.Item label="Correo Electrónico">
-                  <Input
-                    type="email"
-                    onChange={this.handleInput}
-                    name="email"
-                    prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}} />}
-                    placeholder="Correo Electrónico"
-                  />
-                </Form.Item>
-                <Form.Item label="Contraseña">
-                  <Input
-                    onChange={this.handleInput}
-                    type="password"
-                    name="password"
-                    prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />}
-                    placeholder="Contraseña"
-                  />
-                </Form.Item>
-                <Form.Item label="Foto de Perfil">
-                  <Input
-                    type="text"
-                    onChange={this.handleInput}
-                    name="photo"
-                    prefix={<Icon type="picture" style={{color: 'rgba(0,0,0,.25)'}} />}
-                    placeholder="Imagen Url"
-                  />
-                </Form.Item>
-                <Form.Item>
-                  <Col offset={2} span={8}>
-                    <Button htmlType="submit" type="primary">
-                      Regístrate
-                    </Button>
-                  </Col>
+        <div className="signup-form">
+          <h2>Regístrate</h2>
+          <Row type="flex">
+            <Col
+              xl={{
+                span: 12,
+                offset: 6
+              }}
+              xxl={{
+                span: 12,
+                offset: 6
+              }}
+              xs={{
+                span: 18,
+                offset: 2
+              }}
+            >
+              <div className="card-shadow">
+                <Card>
+                  <Form onSubmit={this.onSubmit}>
+                    <Form.Item label="Nombre">
+                      <Input
+                        type="text"
+                        onChange={this.handleInput}
+                        name="name"
+                        prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
+                        placeholder="Name"
+                      />
+                    </Form.Item>
+                    <Form.Item label="Apellido">
+                      <Input
+                        type="text"
+                        onChange={this.handleInput}
+                        name="lastName"
+                        prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
+                        placeholder="Apellido"
+                      />
+                    </Form.Item>
+                    <Form.Item label="Nombre de usuario">
+                      <Input
+                        type="text"
+                        onChange={this.handleInput}
+                        name="username"
+                        prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />}
+                        placeholder="Nombre de usuario"
+                      />
+                    </Form.Item>
+                    <Form.Item label="Correo Electrónico">
+                      <Input
+                        type="email"
+                        onChange={this.handleInput}
+                        name="email"
+                        prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}} />}
+                        placeholder="Correo Electrónico"
+                      />
+                    </Form.Item>
+                    <Form.Item label="Contraseña">
+                      <Input
+                        onChange={this.handleInput}
+                        type="password"
+                        name="password"
+                        prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />}
+                        placeholder="Contraseña"
+                      />
+                    </Form.Item>
+                    <Form.Item label="Foto de Perfil">
+                      <Input
+                        type="text"
+                        onChange={this.handleInput}
+                        name="photo"
+                        prefix={<Icon type="picture" style={{color: 'rgba(0,0,0,.25)'}} />}
+                        placeholder="Imagen Url"
+                      />
+                    </Form.Item>
+                    <Form.Item>
+                      <Col
+                        xl={{
+                          span: 14,
+                          offset: 4
+                        }}
+                        className="signup-buttons"
+                      >
+                        <Button htmlType="submit" type="primary">
+                          Regístrate
+                        </Button>
+                        {/* </Col>
 
-                  <Col offset={2} span={8}>
-                    <Link to="/">
+                      <Col offset={2} span={8}> */}
+                        <Link to="/">
+                          {' '}
+                          <Button type="primary">Home</Button>
+                        </Link>
+                      </Col>
+                    </Form.Item>
+                    <small>
                       {' '}
-                      <Button type="primary">Home</Button>
-                    </Link>
-                  </Col>
-                </Form.Item>
-                <small>
-                  {' '}
-                  Si ya tienes una cuenta, puedes ingresar <Link to="/login">aquí</Link>.
-                </small>
-              </Form>
-            </Card>
-          </Col>
-          <Col span={8}>
-            <Card>
+                      Si ya tienes una cuenta, puedes ingresar <Link to="/login">aquí</Link>.
+                    </small>
+                  </Form>
+                </Card>
+              </div>
+            </Col>
+            <Col span={8}>
+              {/* <Card>
               <Carousel effect="fade" autoplay>
                 <div>
                   <img
@@ -163,9 +176,10 @@ export default class Signup extends Component {
                   />
                 </div>
               </Carousel>
-            </Card>
-          </Col>
-        </Row>
+            </Card> */}
+            </Col>
+          </Row>
+        </div>
       </div>
     );
   }

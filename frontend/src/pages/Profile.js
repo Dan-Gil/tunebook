@@ -9,7 +9,7 @@ export default class Profile extends Component {
   state = {
     userModalVisible: false,
     fileModalVisible: false,
-    user: null,
+    user: null
   };
 
   componentDidMount() {
@@ -31,7 +31,7 @@ export default class Profile extends Component {
   handleCancel = e => {
     this.setState({
       fileModalVisible: false,
-      userModalVisible: false,
+      userModalVisible: false
     });
   };
 
@@ -47,7 +47,7 @@ export default class Profile extends Component {
     this.loadProfile();
     this.setState({
       fileModalVisible: false,
-      userModalVisible: false,
+      userModalVisible: false
     });
   };
 
@@ -55,24 +55,20 @@ export default class Profile extends Component {
     if (!this.state.user) {
       return null;
     }
-    const images = this.state.user.files
-      .filter(file => file.type === 'Imagen');
+    const images = this.state.user.files.filter(file => file.type === 'Imagen');
     return (
-      <div>
+      <div className="profile-info">
         <Row>
           <Col
-            xl={
-              {
-                span: 16,
-                offset: 4,
-              }
-            }
-            xxl={
-              {
-                span: 12,
-                offset: 6,
-              }
-            }>
+            xl={{
+              span: 16,
+              offset: 4
+            }}
+            xxl={{
+              span: 12,
+              offset: 6
+            }}
+          >
             <Card>
               <h1
                 style={{
@@ -87,70 +83,48 @@ export default class Profile extends Component {
         </Row>
         <Row>
           <Col
-            xl={
-              {
-                span: 16,
-                offset: 4,
-              }
-            }
-            xxl={
-              {
-                span: 12,
-                offset: 6,
-              }
-            }
+            xl={{
+              span: 16,
+              offset: 4
+            }}
+            xxl={{
+              span: 12,
+              offset: 6
+            }}
           >
-            <UserCard user={this.state.user}/>
+            <UserCard user={this.state.user} />
             <Button type="primary" onClick={this.showUserModal}>
               Edita Tu perfil
             </Button>
-            <Modal
-              title="Edita tu perfil"
-              visible={this.state.userModalVisible}
-              onCancel={this.handleCancel}
-            >
-              <EditUser onSave={this.handleSave} user={this.state.user}/>
+            <Modal title="Edita tu perfil" visible={this.state.userModalVisible} onCancel={this.handleCancel}>
+              <EditUser onSave={this.handleSave} user={this.state.user} />
             </Modal>
             <Button type="primary" onClick={this.showFileModal}>
               Agrega archivo
             </Button>
-            <Modal
-              title="Agrega archivo"
-              visible={this.state.fileModalVisible}
-              onCancel={this.handleCancel}
-            >
-              <FileForm onSave={this.handleSave}/>
+            <Modal title="Agrega archivo" visible={this.state.fileModalVisible} onCancel={this.handleCancel}>
+              <FileForm onSave={this.handleSave} />
             </Modal>
           </Col>
         </Row>
         <Row>
           <Col
-            xl={
-              {
-                span: 16,
-                offset: 4,
-              }
-            }
-            xxl={
-              {
-                span: 12,
-                offset: 6,
-              }
-            }
+            xl={{
+              span: 16,
+              offset: 4
+            }}
+            xxl={{
+              span: 12,
+              offset: 6
+            }}
           >
             <Card>
-              <Carousel
-                effect="fade"
-                autoplay
-              >
-                {
-                  images
-                    .map((file) => (
-                    <div key={file._id}>
-                      <img src={file.photo} alt={file.name} style={{width: "100%", height: "auto"}}/>
-                    </div>
-                  ))
-                }
+              <Carousel effect="fade" autoplay>
+                {images.map(file => (
+                  <div key={file._id}>
+                    <img src={file.photo} alt={file.name} style={{width: '100%', height: 'auto', objectFit: 'cover'}} />
+                  </div>
+                ))}
               </Carousel>
             </Card>
           </Col>
