@@ -23,7 +23,18 @@ export default class Message extends Component {
       .then(console.log)
       .catch(console.error);
   }
-
+  deleteMessage() {
+    MY_SERVICE.deleteMessages()
+      .then(({data}) => {
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            messages: prevState.messages.filter(e => e._id !== data.message._id)
+          };
+        });
+      })
+      .catch(console.error);
+  }
   render() {
     const {messages} = this.state;
     return (
@@ -39,12 +50,21 @@ export default class Message extends Component {
               offset: 6
             }}
           >
-            <Card>
+            <h2>Mensajes:</h2>
+            <Card
+            // style={{
+            //   backgroundColor: '#7a4aac36'
+            // }}
+            >
               {messages.map(item => (
                 <Comment
                   key={item.from.name}
                   className="messages-card"
-                  actions={[<span key={`delete-${item._id}`}>Delete</span>]}
+                  actions={[
+                    <span key={`delete-${item._id}`} onClick={this.deleteMessage}>
+                      Delete
+                    </span>
+                  ]}
                   author={item.from.username}
                   content={item.message}
                   datetime={moment().to(item.createdAt)}

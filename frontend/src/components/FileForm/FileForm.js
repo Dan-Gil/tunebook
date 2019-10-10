@@ -63,7 +63,7 @@ export default class FileForm extends Component {
     const {Option} = Select;
 
     return (
-      <div>
+      <div className="file-form">
         <Card md={4} offset={8} span={8}>
           <Form onSubmit={this.onSubmit} encType="multipart/form-data">
             <Form.Item label="Nombre del Archivo">

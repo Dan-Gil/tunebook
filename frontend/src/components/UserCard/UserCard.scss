@@ -1,3 +1,26 @@
-div.user-card {
+.user-card {
+  // background-color: #ffffffb4;
 
+  .profile-photo {
+    // display: flex;
+    // justify-content: center;
+    span {
+      box-shadow: 0px 8px 9px 0px #2d2a2d94;
+    }
+  }
+  .profile-user-data {
+    box-sizing: content-box;
+    margin-bottom: 20px;
+    height: 200px;
+    background-color: #8306d1d4;
+
+    padding: 20px 50px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(41, 9, 82, 0.274);
+    h4,
+    li,
+    span {
+      color: #ffffff;
+    }
+  }
 }

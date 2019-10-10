@@ -59,6 +59,9 @@ const MY_SERVICE = {
   getMessages: async (unread, skip, limit) => {
     return await service.get(addSkipLimit(`/message${unread ? '?unread=1' : ''}`, skip, limit));
   },
+  deleteMessages: async id => {
+    return await service.delete(`/message/${id}`);
+  },
   sendMessage: async (to, message) => {
     const data = {
       message,

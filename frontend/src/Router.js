@@ -6,9 +6,9 @@ import Profile from './pages/Profile';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound.js';
 import DefaultLayout from './components/DefaultLayout/DefaultLayout';
-import Dashboard from './pages/Dashboard';
 import User from './pages/User';
 import Message from './pages/Message';
+import test from './pages/test';
 
 const Router = () => (
   <BrowserRouter>
@@ -17,9 +17,9 @@ const Router = () => (
       <DefaultLayout exact path="/signup" component={Signup} />
       <DefaultLayout exact path="/login" component={Login} />
       <DefaultLayout exact path="/profile" component={Profile} />
-      <DefaultLayout exact path="/dashboard" component={Dashboard} />
       <DefaultLayout exact path="/user/:id" component={User} />
       <DefaultLayout exact path="/messages" component={Message} />
+      <DefaultLayout exact path="/test" component={test} />
       <DefaultLayout component={NotFound} />
     </Switch>
   </BrowserRouter>

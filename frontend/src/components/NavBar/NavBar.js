@@ -20,7 +20,7 @@ export default class NavBar extends Component {
     return (
       <div className="nav-bar">
         <div className="left">
-          <Link to="/dashboard">
+          <Link to="/profile">
             <img className="logo" src="/images/logo_noname.png" alt="logo" />
           </Link>
         </div>

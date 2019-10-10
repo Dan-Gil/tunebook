@@ -41,9 +41,25 @@
   }
 }
 
+.user-form {
+  background-image: url('https://www.howtobecomearockstarphotographer.com/wp-content/uploads/2016/05/Destroyer_Blog_3-1-1000x567.jpg');
+  background-size: cover;
+  background-position: 50% 50%;
+  height: auto;
+}
 .messages-form {
+  background-image: url('http://bigskyarts.org/wp-content/uploads/2017/02/Lukas-Nelson-small.jpg');
+  background-size: cover;
+  background-position: 50% 50%;
   margin: 0 auto;
   padding: 20px 0;
+  h2 {
+    font-size: 2rem;
+    padding: 3%;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px rgb(67, 19, 145), 0 0 5px darkblue;
+  }
 
   .messages-card {
     margin: 20px 0;
@@ -51,8 +67,18 @@
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(41, 9, 82, 0.274);
   }
-
+  .ant-comment-content-author {
+    span {
+      font-size: 1rem;
+    }
+  }
+  .ant-comment-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
   .ant-comment-content-detail {
+    font-size: 1.3rem;
     background-color: #aba8b545;
     border-radius: 12px;
     padding: 20px;
@@ -60,14 +86,6 @@
 }
 .footer-dark {
   background: black;
-}
-
-.profile-photo {
-  display: flex;
-  justify-content: center;
-  span {
-    box-shadow: 0px 8px 9px 0px #2d2a2d94;
-  }
 }
 
 .not-found {
@@ -79,9 +97,20 @@
 }
 
 .profile-info {
-  background-image: url('https://www.tokkoro.com/picsup/3023762-band_entertainment_fun_music_musical-instrument_musicians_people_performance_stage.jpg');
+  background-image: url('http://pureimg.com/public/uploads/large/291498570090iv8wfpe2vyzvrlcfhqfmjj3qfa382p1sm6kzrhkhi03o19lynm09hya42aiqe2ehf3knfl3vubxklnfih40rvnbn2lhgdq0egjj4.jpg');
   background-size: cover;
   background-position: 50% 50%;
+
+  div.profile-header {
+    background-color: #7a4aac36;
+    text-align: center;
+
+    h1,
+    h2 {
+      color: white;
+      font-size: 2rem;
+    }
+  }
 }
 
 .signup-form {
@@ -133,3 +162,177 @@
     justify-content: space-evenly;
   }
 }
+
+@media only screen and (min-width: 768px) {
+  .profile-test {
+    background-image: url('https://www.tokkoro.com/picsup/3023762-band_entertainment_fun_music_musical-instrument_musicians_people_performance_stage.jpg');
+    background-size: cover;
+    background-position: 50% 50%;
+    .profile-header {
+      height: 200px;
+      background-color: #896ca894;
+      text-align: center;
+      h1,
+      h2 {
+        color: white;
+        font-size: 2rem;
+        text-shadow: 1px 1px 2px black, 0 0 25px rgb(67, 19, 145), 0 0 5px darkblue;
+      }
+    }
+    .profile-content {
+      top: -80px;
+      padding: 40px 70px;
+    }
+
+    .profile-image {
+      padding: 30px;
+      height: 200px;
+      background-color: transparent;
+      span {
+        z-index: 2;
+        top: -70px;
+      }
+    }
+    .profile-bio {
+      margin-top: 30px;
+      top: -25px;
+      height: 400px;
+      padding: 60px 20px;
+      background-color: rgba(35, 23, 61, 0.589);
+      border-radius: 20px;
+      h2 {
+        color: white;
+        text-shadow: 1px 1px 2px black, 0 0 25px rgb(67, 19, 145), 0 0 5px darkblue;
+      }
+      p {
+        color: white;
+      }
+    }
+    .profile-buttons {
+      margin-top: 5px;
+      display: flex;
+      justify-content: space-evenly;
+      .ant-btn-primary {
+        margin: 10px 0;
+        background-color: #8700a1;
+        border: none;
+        box-shadow: -3px 7px 4px 0 rgba(9, 8, 11, 0.2), 0 6px 20px 0 rgba(41, 9, 82, 0.274);
+      }
+
+      .ant-btn-primary:hover {
+        background-color: #bc0ed3;
+        border: none;
+      }
+
+      .ant-btn-primary:focus {
+        background-color: #bc0ed3;
+        border: none;
+      }
+    }
+
+    .profile-right {
+      padding: 0 20px;
+    }
+    .profile-blank {
+      height: 100px;
+    }
+    .profile-user-data {
+      box-sizing: content-box;
+      margin-bottom: 20px;
+      height: 200px;
+      background-color: #d08bfbd4;
+
+      padding: 20px 50px;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(41, 9, 82, 0.274);
+      h4,
+      li,
+      span {
+        color: #ffffff;
+      }
+    }
+    .profile-carrousel {
+      background-color: black;
+      height: 300px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(41, 9, 82, 0.274);
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .profile-test {
+    background-image: url('https://www.tokkoro.com/picsup/3023762-band_entertainment_fun_music_musical-instrument_musicians_people_performance_stage.jpg');
+    background-size: cover;
+    background-position: 50% 50%;
+    color: #ffffff;
+  }
+  .profile-header {
+    background-color: #896ca894;
+    text-align: center;
+    h1,
+    h2 {
+      color: white;
+      font-size: 2rem;
+      text-shadow: 1px 1px 2px black, 0 0 25px rgb(67, 19, 145), 0 0 5px darkblue;
+    }
+  }
+  .profile-bio {
+    background-color: rgba(35, 23, 61, 0.589);
+    border-radius: 20px;
+    text-justify: auto;
+    padding: 15px 30px;
+    h2 {
+      color: white;
+      text-shadow: 1px 1px 2px black, 0 0 25px rgb(67, 19, 145), 0 0 5px darkblue;
+    }
+    p {
+      color: white;
+    }
+  }
+  .profile-buttons {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    .ant-btn-primary {
+      margin: 10px 0;
+      background-color: #8700a1;
+      border: none;
+      box-shadow: -3px 7px 4px 0 rgba(9, 8, 11, 0.2), 0 6px 20px 0 rgba(41, 9, 82, 0.274);
+    }
+
+    .ant-btn-primary:hover {
+      background-color: #bc0ed3;
+      border: none;
+    }
+
+    .ant-btn-primary:focus {
+      background-color: #bc0ed3;
+      border: none;
+    }
+  }
+
+  .profile-user-data {
+    margin-bottom: 20px;
+    background-color: rgba(21, 9, 53, 0.884);
+    padding: 20px 50px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(41, 9, 82, 0.274);
+    span,
+    h2 {
+      color: #ffffff;
+    }
+  }
+}
+
+// .profile-image {
+//   display: flex;
+//   justify-content: center;
+//   img {
+//     box-shadow: 0px 8px 9px 0px #2d2a2d94;
+//     height: 250px;
+//     width: 250px;
+//     object-fit: cover;
+//     object-position: 30% 50%;
+//     border-radius: 50% 50%;
+//   }
+// }

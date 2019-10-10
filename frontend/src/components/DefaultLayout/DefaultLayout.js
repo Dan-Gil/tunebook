@@ -16,7 +16,7 @@ const DefaultLayout = ({component: Component, ...rest}) => {
           <Header style={{position: 'fixed', zIndex: 1, width: '100%'}}>
             <NavBar {...matchProps} />
           </Header>
-          <Layout style={{paddingTop: 70}}>
+          <Layout style={{paddingTop: 65}}>
             <Content>
               <Component {...matchProps} />
             </Content>
