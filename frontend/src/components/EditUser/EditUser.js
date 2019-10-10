@@ -128,15 +128,7 @@ class EditUser extends Component {
                 placeholder={loggedUser.lastName}
               />
             </Form.Item>
-            <Form.Item label="Correo Electrónico">
-              <Input
-                type="email"
-                onChange={this.handleInput}
-                name="email"
-                prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}} />}
-                placeholder={loggedUser.email}
-              />
-            </Form.Item>
+
             <Form.Item label="Foto de Perfil">
               <Input
                 type="text"
