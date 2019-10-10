@@ -17,11 +17,11 @@ export default class MessageIcon extends Component {
         this.setState({
           messages: response.data.length
         });
-        setTimeout(this.getMessages, 300000);
+        setTimeout(this.getMessages, 30000);
       })
       .catch(e => {
         // console.error(e);
-        setTimeout(this.getMessages, 300000);
+        setTimeout(this.getMessages, 30000);
       });
   };
 
