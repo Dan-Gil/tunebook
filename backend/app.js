@@ -23,7 +23,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.FRONTENDPOINT, process.env.FRONT]
+    origin: [process.env.FRONTENDPOINT, process.env.FRONT, 'https://tunebook.netlify.com/']
   })
 );
 
