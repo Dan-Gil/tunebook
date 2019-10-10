@@ -41,6 +41,7 @@ export default class UserCard extends Component {
                     ))}
                   </ul>
                 </Descriptions.Item>
+                <Descriptions.Item label={<strong>Biografía</strong>}>{loggedUser.biography}</Descriptions.Item>
               </Descriptions>
             </Col>
           </Row>

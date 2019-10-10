@@ -122,7 +122,11 @@ export default class Profile extends Component {
               <Carousel effect="fade" autoplay>
                 {images.map(file => (
                   <div key={file._id}>
-                    <img src={file.photo} alt={file.name} style={{width: '100%', height: 'auto', objectFit: 'cover'}} />
+                    <img
+                      src={file.photo}
+                      alt={file.name}
+                      style={{width: '100%', height: '500px', objectFit: 'cover'}}
+                    />
                   </div>
                 ))}
               </Carousel>

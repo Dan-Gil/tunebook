@@ -2,7 +2,7 @@ import axios from 'axios';
 
 let baseURL;
 process.env.NODE_ENV === 'production'
-  ? (baseURL = 'here should be your production endpoint')
+  ? (baseURL = 'https://tune-book.herokuapp.com')
   : (baseURL = 'http://localhost:3000');
 
 const service = axios.create({withCredentials: true, baseURL});
@@ -47,7 +47,7 @@ const MY_SERVICE = {
     url = addSkipLimit(url, skip, limit);
     return await service.get(url);
   },
-  getUser: async (id) => {
+  getUser: async id => {
     return await service.get(`/user/${id}`);
   },
   getInstruments: async () => {
@@ -63,7 +63,7 @@ const MY_SERVICE = {
     const data = {
       message,
       to,
-      from: MY_SERVICE.loggedUser()._id,
+      from: MY_SERVICE.loggedUser()._id
     };
     return await service.post('/message', data);
   },

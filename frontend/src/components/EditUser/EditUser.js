@@ -28,8 +28,8 @@ class EditUser extends Component {
     this.setState({
       user: {
         ...this.state.user,
-        instruments: this.props.user.instruments.map((item) => item._id),
-        genres: this.props.user.genres.map((item) => item._id)
+        instruments: this.props.user.instruments.map(item => item._id),
+        genres: this.props.user.genres.map(item => item._id)
       }
     });
   }
@@ -144,6 +144,15 @@ class EditUser extends Component {
                 name="photo"
                 prefix={<Icon type="picture" style={{color: 'rgba(0,0,0,.25)'}} />}
                 placeholder="Imagen Url"
+              />
+            </Form.Item>
+            <Form.Item label="Biografía">
+              <Input
+                type="text"
+                onChange={this.handleInput}
+                name="biography"
+                prefix={<Icon type="solution" style={{color: 'rgba(0,0,0,.25)'}} />}
+                placeholder="Agrega tu Biografía"
               />
             </Form.Item>
             <Form.Item label="Selecciona Instrumentos">

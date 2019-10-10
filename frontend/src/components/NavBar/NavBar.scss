@@ -46,4 +46,10 @@
     display: flex;
     justify-content: center;
   }
+  .ant-layout-header .ant-menu {
+    float: right;
+  }
+  .ant-menu.ant-menu-dark .ant-menu-item-selected {
+    background-color: #bc0ed3;
+  }
 }
