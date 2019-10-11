@@ -85,7 +85,7 @@ class User extends Component {
 
         <Row>
           <Col>
-            <Card style={{width: 900, margin: '0 auto'}}>
+            <Card style={{width: '80vw', margin: '0 auto'}}>
               <h1> Envía un mensaje a "{this.state.user.username}"</h1>
               <Comment
                 avatar={

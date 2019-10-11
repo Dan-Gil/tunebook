@@ -20,17 +20,14 @@ export default class Message extends Component {
         });
         return MY_SERVICE.markMessagesRead();
       })
-      .then(console.log)
+      // .then(console.log)
       .catch(console.error);
   }
-  deleteMessage() {
-    MY_SERVICE.deleteMessages()
+  deleteMessage(id) {
+    MY_SERVICE.deleteMessages(id)
       .then(({data}) => {
-        this.setState(prevState => {
-          return {
-            ...prevState,
-            messages: prevState.messages.filter(e => e._id !== data.message._id)
-          };
+        this.setState({
+          messages: this.state.messages.filter(e => e._id !== id)
         });
       })
       .catch(console.error);
@@ -61,7 +58,7 @@ export default class Message extends Component {
                   key={item.from.name}
                   className="messages-card"
                   actions={[
-                    <span key={`delete-${item._id}`} onClick={this.deleteMessage}>
+                    <span key={`delete-${item._id}`} onClick={this.deleteMessage.bind(this, item._id)}>
                       Delete
                     </span>
                   ]}
